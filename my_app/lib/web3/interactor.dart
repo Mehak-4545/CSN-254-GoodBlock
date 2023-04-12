@@ -3,40 +3,10 @@ import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart';
 import 'package:convert/convert.dart';
 import 'package:my_app/contracts/address.dart';
-
+import 'package:flutter/widgets.dart';
+import 'dart:ui';
 // Replace these with your contract's ABI and address
 const String contractAbi = """[
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_task",
-				"type": "string"
-			}
-		],
-		"name": "addTask",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "task",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isDone",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct Testcontract.Task",
-				"name": "",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"anonymous": false,
 		"inputs": [
@@ -44,84 +14,183 @@ const String contractAbi = """[
 				"components": [
 					{
 						"internalType": "string",
-						"name": "task",
+						"name": "name",
 						"type": "string"
 					},
 					{
-						"internalType": "bool",
-						"name": "isDone",
-						"type": "bool"
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "password",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "contact",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Address",
+						"type": "string"
 					}
 				],
 				"indexed": false,
-				"internalType": "struct Testcontract.Task",
-				"name": "_value",
+				"internalType": "struct Corporation.corporation",
+				"name": "",
 				"type": "tuple"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
-		"name": "Test_event",
+		"name": "_createCorp_event",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			}
+		],
+		"name": "_login",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "successful_login",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "contact",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "Address",
+				"type": "string"
+			}
+		],
+		"name": "_login_event",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_contact",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_Address",
+				"type": "string"
+			}
+		],
+		"name": "_signup",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"name": "_signup_event",
 		"type": "event"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_taskIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "_status",
-				"type": "bool"
-			}
-		],
-		"name": "updateStatus",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_taskIndex",
-				"type": "uint256"
-			}
-		],
-		"name": "getTask",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "task",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isDone",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct Testcontract.Task",
 				"name": "",
-				"type": "tuple"
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "trial_func",
+		"name": "Corporations",
 		"outputs": [
 			{
 				"internalType": "string",
-				"name": "",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "password",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "contact",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Address",
 				"type": "string"
 			}
 		],
-		"stateMutability": "pure",
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]"""; // ABI as a string
@@ -159,7 +228,7 @@ void init() async {
   client = Web3Client("https://testnet.aurora.dev/", httpClient);
 }
 
-Future<void> callContractFunction(String contractName, String funcName) async {
+Future<dynamic> callContractFunction(String contractName, String funcName, List parameter) async {
   // Encode the function call with its arguments
   final contract = allContracts[contractName];
   final function = contract!.function(funcName);
@@ -171,6 +240,7 @@ Future<void> callContractFunction(String contractName, String funcName) async {
     final decoded = transferEvent.decodeResults(event.topics!, event.data!);
 
     final from = decoded[0];
+    return from;
 
     print(
         '----------------------------------${from[0]}------------------------------------------');
@@ -182,7 +252,7 @@ Future<void> callContractFunction(String contractName, String funcName) async {
   final transaction = Transaction.callContract(
     contract: contract,
     function: function,
-    parameters: ["gfdgsdrgtrgdersgt"],
+    parameters: parameter,
     maxGas: 100000,
     gasPrice: gasPrice,
     value: EtherAmount.zero(),
@@ -213,13 +283,28 @@ Future<void> callContractFunction(String contractName, String funcName) async {
   // Decode the return value of the contract function
   dynamic info = await client.getTransactionByHash(transactionHash);
   print('Return value: ${receipt}');
+
 }
 
-Future<void> main() async {
+void main() async {
   // await callContractFunction();
+  await ngo_signup("Tanmay","email.com","vava","2341","erwr");
+
 }
 
-// Future<dynamic> login(String email, String password) {
-//   functionName 
-//   return ;
-// }
+Future<dynamic> ngo_login(String userName, String password) {
+  String functionName = "_login";
+  String contractName= "ngo";
+  List parameter = [userName,password];
+  return callContractFunction(functionName,contractName,parameter);
+}
+
+
+Future<dynamic> ngo_signup(String userName, String email,String password,String contact,String address) {
+  String functionName = "_signup";
+  String contractName= "ngo";
+  List parameter = [userName,email,password,contact,address];
+  print("ngo signed in");
+  return callContractFunction(functionName,contractName,parameter);
+  
+}
