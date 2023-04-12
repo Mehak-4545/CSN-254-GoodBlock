@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './frontend_login.dart';
+import './main.dart';
 // import 'package:flutter/widgets.dart';
 
 class AuthPage_ngo extends StatefulWidget {
@@ -279,7 +280,7 @@ class _AuthPageState extends State<AuthPage_ngo> {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AuthPage()));
+                              builder: (context) => AuthPage(role: "NGO")));
                         },
                       )
                     ],

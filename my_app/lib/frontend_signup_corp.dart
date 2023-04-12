@@ -4,6 +4,9 @@ import './frontend_login.dart';
 // import 'package:flutter/widgets.dart';
 
 class AuthPage_corp extends StatefulWidget {
+  // final String role;
+
+  // const AuthPage_corp({Key? key, required this.role}) : super(key: key);
   @override
   _AuthPageState createState() => _AuthPageState();
 }
@@ -280,7 +283,8 @@ class _AuthPageState extends State<AuthPage_corp> {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AuthPage()));
+                              builder: (context) =>
+                                  AuthPage(role: "Corporation")));
                         },
                       )
                     ],

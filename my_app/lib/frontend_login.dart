@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/home_ngo.dart';
+import 'package:my_app/main.dart';
 import './frontend_signup_individual.dart';
+import 'home.dart';
+import 'profile_page_individual.dart';
+import 'profile_page_corporation.dart';
+import 'profile_page_ngo.dart';
 // import 'package:flutter/widgets.dart';
 
 class AuthPage extends StatefulWidget {
+  final String role;
+
+  const AuthPage({Key? key, required this.role}) : super(key: key);
   @override
   _AuthPageState createState() => _AuthPageState();
 }
@@ -197,7 +206,27 @@ class _AuthPageState extends State<AuthPage> {
                         iconSize: 48,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AuthPage_indi()));
+                              builder: (context) => LaunchPage()));
+                        },
+                      ),
+                      IconButton(
+                        color: Colors.black,
+                        icon: const Icon(Icons.arrow_forward),
+                        padding: const EdgeInsets.only(right: 250.0),
+                        // alignment: Alignment.centerLeft,
+                        iconSize: 48,
+                        onPressed: () {
+                          if (widget.role == "NGO") {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomeAppPage(
+                                      role: widget.role,
+                                    )));
+                          } else {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomeOtherAppPage(
+                                      role: widget.role,
+                                    )));
+                          }
                         },
                       )
                     ],

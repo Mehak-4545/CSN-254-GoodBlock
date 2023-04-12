@@ -279,7 +279,8 @@ class _AuthPageState extends State<AuthPage_indi> {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AuthPage()));
+                              builder: (context) =>
+                                  AuthPage(role: "Individual")));
                         },
                       )
                     ],
