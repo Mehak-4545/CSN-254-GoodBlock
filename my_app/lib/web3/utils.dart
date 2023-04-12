@@ -6,14 +6,15 @@ class Web3Interactor {
   Web3Interactor() {
     httpClient = Client();
     ethereumClient = Web3Client(
-      "https://aurora-testnet.infura.io/v3/2dcb5659718143d49d488b502784a9b0",
+      "https://testnet.aurora.dev/",
       httpClient,
     );
   }
 
   late Client httpClient;
   late Web3Client ethereumClient;
-  final EthPrivateKey credential = EthPrivateKey.fromHex('617bded8c194ba0e803cdb16959c2d6201174ea27f0a2957d523bf141a34b6e3');
+  final EthPrivateKey credential = EthPrivateKey.fromHex(
+      '617bded8c194ba0e803cdb16959c2d6201174ea27f0a2957d523bf141a34b6e3');
   final String contractName = "Testcontract";
 
   Future<List<dynamic>> query(String functionName, List<dynamic> args) async {
@@ -34,10 +35,12 @@ class Web3Interactor {
         function: function,
         parameters: args,
       ),
-      fetchChainIdFromNetworkId: true,
-      chainId: null,
+      // fetchChainIdFromNetworkId: true,
+      chainId: 1313161555,
     );
-
+    print(result);
+    final transaction = await ethereumClient.getTransactionByHash(result.toString());
+    print(transaction);
     return result;
   }
 
@@ -52,18 +55,38 @@ class Web3Interactor {
 			}
 		],
 		"name": "addTask",
-		"outputs": [
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "Test_event",
+		"type": "event"
+	},
+	{
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "a",
+				"name": "_taskIndex",
 				"type": "uint256"
 			},
 			{
-				"internalType": "address",
-				"name": "senderadd",
-				"type": "address"
+				"internalType": "bool",
+				"name": "_status",
+				"type": "bool"
 			}
 		],
+		"name": "updateStatus",
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -99,7 +122,7 @@ class Web3Interactor {
 		"type": "function"
 	}
 ]''';
-    String contractAddress = "0x83EdC4D1a750383e55E2d759bD65A8fA2a26067F";
+    String contractAddress = "0x2f9b57232494EAc37bAE0050deBeCd95674c95FD";
 
     DeployedContract contract = DeployedContract(
       ContractAbi.fromJson(abi, contractName),
@@ -115,4 +138,5 @@ void main() async {
   // List<dynamic> result = await web3Interactor.query("addTask", ["hello ji"]);
   var result = await web3Interactor.transaction("addTask", ["hello ji"]);
   print(result);
+  // final transaction = await Web3Interactor.getTransaction(transactionHash);
 }
