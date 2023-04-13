@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/profile_page_individual.dart';
+import 'package:my_app/profile_page_corporation.dart';
 import 'package:my_app/profile_page_ngo.dart';
+import 'package:my_app/dummy.dart';
 import './frontend_login.dart';
-import 'profile_page_individual.dart';
-import 'profile_page_corporation.dart';
-import 'main.dart';
-import 'main2.dart';
-import 'dummy.dart';
-// import 'main3.dart';
-import 'frontend_listing.dart';
+import 'package:my_app/ngo_addcampaign.dart';
+import 'package:my_app/frontend_listing.dart';
 // import 'main.dart';
 
 // void main() {
-//   runApp(const HomeOtherApp());
+//   runApp(const HomeApp());
 // }
 
 void tmpFunction1() {
@@ -27,39 +25,34 @@ void tmpFunction3() {
   print('Funt corp');
 }
 
-// void _onItemTapped(int index) {
-//   if (index == 0) {
-//     Navigator.of(context).push(MaterialPageRoute(
-//         builder: (context) => HomeAppPage(
-//               role: widget.role,
-//             )));
-//   }
-// }
-// class HomeOtherApp extends StatelessWidget {
-//   const HomeOtherApp({super.key});
+// class HomeApp extends StatelessWidget {
+//   final String role;
+
+//   const HomeApp({Key? key, required this.role}) : super(key: key);
 //   // This widget is the root of your application.
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
-//       title: 'HomeOther App',
+//       title: 'Home App',
 //       theme: ThemeData(
 //         primarySwatch: Colors.blue,
 //       ),
-//       home: const HomeOtherAppPage(),
+//       home: const HomeAppPage(),
 //     );
 //   }
 // }
 
-class HomeOtherAppPage extends StatefulWidget {
-  final String role;
+class HomeAppPage extends StatefulWidget {
+  final String role, name;
 
-  const HomeOtherAppPage({Key? key, required this.role}) : super(key: key);
+  const HomeAppPage({Key? key, required this.role, required this.name})
+      : super(key: key);
 
   @override
-  State<HomeOtherAppPage> createState() => _HomeOtherAppPageState();
+  State<HomeAppPage> createState() => _HomeAppPageState();
 }
 
-class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
+class _HomeAppPageState extends State<HomeAppPage> {
   // Default placeholder text.
   String textToShow = 'I Like Flutter';
 
@@ -119,7 +112,7 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                     crossAxisCount: 3,
                     children: [
                       SizedBox(
-                        height: 150,
+                        height: 145,
                         width: 50,
                         // height: 150,
                         // color:Color.fromARGB(255, 198, 234, 250),
@@ -130,16 +123,14 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      AuthPage_list(role: widget.role)));
+                                  builder: (context) => (AuthPage_dummy())));
                             },
-                            // onTap: tmpFunction1,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
-                                'assets/images/find.jpeg',
-                                height: 150,
-                                width: 50,
+                                'assets/images/add_camp_new.png',
+                                height: 160,
+                                width: 60,
                               ),
                             ),
                           ),
@@ -155,14 +146,8 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                               borderRadius: BorderRadius.circular(10)),
                           child: GestureDetector(
                             onTap: () {
-                              if (widget.role == "Corporation") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
-                              }
-                              if (widget.role == "Individual") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
-                              }
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AuthPage_dummy()));
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -185,14 +170,8 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                               borderRadius: BorderRadius.circular(10)),
                           child: GestureDetector(
                             onTap: () {
-                              if (widget.role == "Corporation") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
-                              }
-                              if (widget.role == "Individual") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
-                              }
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AuthPage_dummy()));
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -219,11 +198,11 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.arrow_back),
-            label: String.fromEnvironment('back'),
+            label: String.fromEnvironment('home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: String.fromEnvironment('profile'),
+            label: String.fromEnvironment('home'),
           ),
         ],
         onTap: (index) {
@@ -231,15 +210,10 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => AuthPage(role: widget.role)));
           }
-          if (index == 1 && widget.role == "Corporation") {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileCorporation()));
+          if (index == 1) {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ProfileNGO(name: widget.name)));
           }
-          if (index == 1 && widget.role == "Individual") {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileIndividual()));
-          }
-
           // if (widget.role == "Individual") {
           //   Navigator.of(context).push(MaterialPageRoute(
           //       builder: (context) => AuthPage_dummy()));
