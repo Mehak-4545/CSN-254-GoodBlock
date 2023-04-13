@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const ProfileNGO());
-}
+// void main() {
+//   runApp(const ProfileNGO());
+// }
 
 void tmpFunction1() {
   print('Funt ngo');
@@ -28,13 +28,14 @@ class ProfileNGO extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ProfileNGOPage(),
+      home: ProfileNGOPage(name: name),
     );
   }
 }
 
 class ProfileNGOPage extends StatefulWidget {
-  const ProfileNGOPage({super.key});
+  final String name;
+  const ProfileNGOPage({super.key, required this.name});
 
   @override
   State<ProfileNGOPage> createState() => _ProfileNGOPageState();
@@ -70,7 +71,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
         child: Column(
           children: [
             SizedBox(
-              height: 190,
+              height: 250,
             ),
             Container(
               height: 500, //changed - yaha height set ki hai
@@ -79,7 +80,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
 
               alignment: Alignment.center,
               child: SizedBox(
-                height: 240,
+                height: 300,
                 child: Card(
                     // color: Color.fromRGBO(186, 220, 235, 0),
                     color: Color(0xFFF0F4F5),
@@ -94,10 +95,10 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
                         // ),
 
                         SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         Text(
-                          'Organization',
+                          'Organization: '+widget.name,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(

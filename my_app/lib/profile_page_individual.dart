@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const ProfileIndividual());
-}
+// void main() {
+//   runApp(const ProfileIndividual());
+// }
 
 void tmpFunction1() {
   print('Funt ngo');
@@ -17,23 +17,24 @@ void tmpFunction3() {
   print('Funt corp');
 }
 
-class ProfileIndividual extends StatelessWidget {
-  const ProfileIndividual({super.key});
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sample App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ProfileIndividualPage(),
-    );
-  }
-}
+// class ProfileIndividual extends StatelessWidget {
+//   const ProfileIndividual({super.key});
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Sample App',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const ProfileIndividualPage(),
+//     );
+//   }
+// }
 
 class ProfileIndividualPage extends StatefulWidget {
-  const ProfileIndividualPage({super.key});
+  final String name;
+  const ProfileIndividualPage({super.key, required this.name});
 
   @override
   State<ProfileIndividualPage> createState() => _ProfileIndividualPageState();

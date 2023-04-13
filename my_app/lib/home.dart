@@ -51,9 +51,9 @@ void tmpFunction3() {
 // }
 
 class HomeOtherAppPage extends StatefulWidget {
-  final String role;
+  final String role, name;
 
-  const HomeOtherAppPage({Key? key, required this.role}) : super(key: key);
+  const HomeOtherAppPage({Key? key, required this.role, required this.name}) : super(key: key);
 
   @override
   State<HomeOtherAppPage> createState() => _HomeOtherAppPageState();
@@ -131,7 +131,7 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      AuthPage_list(role: widget.role)));
+                                      AuthPage_list(role: widget.role, name: widget.name,)));
                             },
                             // onTap: tmpFunction1,
                             child: ClipRRect(
@@ -233,11 +233,11 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
           }
           if (index == 1 && widget.role == "Corporation") {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileCorporation()));
+                MaterialPageRoute(builder: (context) => ProfileCorporationPage(name: widget.name,)));
           }
           if (index == 1 && widget.role == "Individual") {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileIndividual()));
+                MaterialPageRoute(builder: (context) => ProfileIndividualPage(name: widget.name,)));
           }
 
           // if (widget.role == "Individual") {

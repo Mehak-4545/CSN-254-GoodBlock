@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const ProfileCorporation());
-}
+// void main() {
+//   runApp(const ProfileCorporation());
+// }
 
 void tmpFunction1() {
   print('Funt ngo');
@@ -17,23 +17,24 @@ void tmpFunction3() {
   print('Funt corp');
 }
 
-class ProfileCorporation extends StatelessWidget {
-  const ProfileCorporation({super.key});
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sample App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ProfileCorporationPage(),
-    );
-  }
-}
+// class ProfileCorporation extends StatelessWidget {
+//   const ProfileCorporation({super.key});
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Sample App',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const ProfileCorporationPage(),
+//     );
+//   }
+// }
 
 class ProfileCorporationPage extends StatefulWidget {
-  const ProfileCorporationPage({super.key});
+  final String name;
+  const ProfileCorporationPage({super.key, required this.name});
 
   @override
   State<ProfileCorporationPage> createState() => _ProfileCorporationPageState();

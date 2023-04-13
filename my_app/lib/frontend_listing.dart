@@ -15,8 +15,9 @@ void tmpFunction3() {
 
 class AuthPage_list extends StatefulWidget {
   final String role;
+  final String name;
 
-  const AuthPage_list({Key? key, required this.role}) : super(key: key);
+  const AuthPage_list({Key? key, required this.role, required this.name}) : super(key: key);
   @override
   _AuthPage_listState createState() => _AuthPage_listState();
 }
@@ -63,19 +64,22 @@ class _AuthPage_listState extends State<AuthPage_list> {
           onTap: (index) {
             if (index == 0) {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomeOtherAppPage(role: widget.role)));
+                  builder: (context) => HomeOtherAppPage(
+                        role: widget.role,
+                        name: widget.name,
+                      )));
             }
             if (index == 1) {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomeOtherAppPage(role: widget.role)));
+                  builder: (context) => HomeOtherAppPage(role: widget.role,name: widget.name,)));
             }
             if (index == 2 && widget.role == "Individual") {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileIndividual()));
+                  MaterialPageRoute(builder: (context) => ProfileIndividualPage(name: widget.name)));
             }
             if (index == 2 && widget.role == "Corporation") {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProfileCorporation()));
+                  builder: (context) => ProfileCorporationPage(name: widget.name,)));
             }
             // if (widget.role == "Individual") {
             //   Navigator.of(context).push(MaterialPageRoute(
@@ -192,17 +196,11 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                     flex: 1,
                                     child: TextButton(
                                       onPressed: () {
-                                        if (widget.role == "Corporation") {
+                                        {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ProfileCorporation()));
-                                        }
-                                        if (widget.role == "Individual") {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileIndividual()));
+                                                      ProfileNGOPage(name: "SEEDS")));
                                         }
                                       },
                                       child: Text(
@@ -327,18 +325,11 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                     flex: 1,
                                     child: TextButton(
                                       onPressed: () {
-                                        if (widget.role == "Corporation") {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileCorporation()));
-                                        }
-                                        if (widget.role == "Individual") {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileIndividual()));
-                                        }
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProfileNGO(
+                                                        name: 'Pratham')));
                                       },
                                       child: Text(
                                         "Contact us",
@@ -463,18 +454,13 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                     flex: 1,
                                     child: TextButton(
                                       onPressed: () {
-                                        if (widget.role == "Corporation") {
+                                        {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ProfileCorporation()));
+                                                      ProfileNGOPage(name:"Care India")));
                                         }
-                                        if (widget.role == "Individual") {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileIndividual()));
-                                        }
+                                        
                                       },
                                       child: TextButton(
                                         onPressed: () {

@@ -228,6 +228,7 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AuthPage_list(
                                     role: "NGO",
+                                    name: widget.name,
                                   )));
                         },
                       ),

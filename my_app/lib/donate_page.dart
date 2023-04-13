@@ -231,6 +231,7 @@ class _AuthPageState extends State<AuthPage_donate> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AuthPage_list(
                                     role: widget.role,
+                                    name: widget.name,
                                   )));
                         },
                       ),

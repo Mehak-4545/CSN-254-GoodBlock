@@ -185,7 +185,7 @@ class _AuthPageState extends State<AuthPage> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => HomeOtherAppPage(
                                       role: widget.role,
-                                      // name: input_name,
+                                      name: input_name,
                                     )));
                           }
                         },
