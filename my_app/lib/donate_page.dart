@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/frontend_listing.dart';
 import 'package:my_app/home_ngo.dart';
-import 'package:my_app/main.dart';
+// import 'package:my_app/main.dart';
 import './frontend_signup_individual.dart';
 import 'home.dart';
 import 'profile_page_individual.dart';
 import 'profile_page_corporation.dart';
 import 'profile_page_ngo.dart';
-import 'main.dart';
-import 'main2.dart';
-// import 'main.dart3';
+import 'thankyou.dart';
+
 // import 'package:flutter/widgets.dart';
+void tmpFunction2() {
+  print('Funt indv');
+}
 
-class AuthPage extends StatefulWidget {
-  final String role;
+class AuthPage_donate extends StatefulWidget {
+  final String name, role; //name of NGO
 
-  const AuthPage({Key? key, required this.role}) : super(key: key);
+  const AuthPage_donate({Key? key, required this.name, required this.role})
+      : super(key: key);
   @override
   _AuthPageState createState() => _AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPageState extends State<AuthPage_donate> {
   @override
   Widget build(BuildContext context) {
-    String input_name = "temp";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),
@@ -32,7 +35,7 @@ class _AuthPageState extends State<AuthPage> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/bg_login.png"),
+              image: AssetImage("assets/images/bg_login4.png"),
               fit: BoxFit.fill,
             ),
           ),
@@ -60,9 +63,9 @@ class _AuthPageState extends State<AuthPage> {
                         height: 200,
                       ),
                       Text(
-                        'Welcome back!',
+                        'Donate to:',
                         style:
-                            TextStyle(fontSize: 35, color: Color(0xff0d557e)),
+                            TextStyle(fontSize: 28, color: Color(0xff0d557e)),
                         // style:
                         // TextStyle(
                         //   // const color = const Color(0xffb74093);
@@ -78,60 +81,61 @@ class _AuthPageState extends State<AuthPage> {
                         //   // ],
                         // ),
                       ),
-
                       Text(
-                        'Enter your login credentials',
+                        widget.name,
                         style:
-                            TextStyle(fontSize: 18, color: Color(0xff0d557e)),
+                            TextStyle(fontSize: 28, color: Color(0xff0d557e)),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
+
+                      // Text(
+                      //   'Enter your login credentials',
+                      //   style:
+                      //       TextStyle(fontSize: 18, color: Color(0xff0d557e)),
+                      // ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 0.05,
+                      // ),
 
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
-                        child: TextFormField(
-                          style: TextStyle(color: Color(0xff32637F)),
-                          decoration: InputDecoration(
-                            filled: false,
-                            fillColor: Colors.blueGrey.withOpacity(0.8),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                            hintText: 'User ID',
-                            hintStyle: TextStyle(
-                              color: Color(0xff32637F),
-                            ),
-                            icon: Icon(
-                              Icons.mail_outline,
-                              color: Color(0xff32637F),
-                            ),
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              input_name = value;
-                            });
-                          },
-                        ),
+                        // child: TextFormField(
+                        //   style: TextStyle(color: Color(0xff32637F)),
+                        //   decoration: InputDecoration(
+                        //     filled: false,
+                        //     fillColor: Colors.blueGrey.withOpacity(0.8),
+                        //     border: OutlineInputBorder(
+                        //       borderSide: BorderSide.none,
+                        //       borderRadius: BorderRadius.all(
+                        //         Radius.circular(20),
+                        //       ),
+                        //     ),
+                        //     hintText: 'Name of NGO',
+                        //     hintStyle: TextStyle(
+                        //       color: Color(0xff32637F),
+                        //     ),
+                        //     icon: Icon(
+                        //       Icons.people,
+                        //       color: Color(0xff32637F),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
-                      const Divider(
-                        color: Color(0xff0d557e),
-                        height: 0,
-                        // width: 300,
-                        thickness: 2,
-                        indent: 57,
-                        endIndent: 55,
-                      ),
+                      // const Divider(
+                      //   color: Color(0xff0d557e),
+                      //   height: 0,
+                      //   // width: 300,
+                      //   thickness: 2,
+                      //   indent: 57,
+                      //   endIndent: 55,
+                      // ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
-                          obscureText: true,
+                          keyboardType: TextInputType.numberWithOptions(),
+                          obscureText: false,
                           style: TextStyle(color: Color(0xff32637F)),
                           decoration: InputDecoration(
                             filled: false,
@@ -142,12 +146,12 @@ class _AuthPageState extends State<AuthPage> {
                                 Radius.circular(20),
                               ),
                             ),
-                            hintText: 'Password',
+                            hintText: 'Amount to be donated',
                             hintStyle: TextStyle(
                               color: Color(0xff32637F),
                             ),
                             icon: Icon(
-                              Icons.lock_outline,
+                              Icons.money_rounded,
                               color: Color(0xff32637F),
                             ),
                           ),
@@ -172,22 +176,17 @@ class _AuthPageState extends State<AuthPage> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
+
                       GestureDetector(
-                        // onTap: () {},
+                        // onTap: () {
+                        //   tmpFunction();
+                        // },
                         onTap: () {
-                          if (widget.role == "NGO") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeAppPage(
-                                      role: widget.role,
-                                      name: input_name,
-                                    )));
-                          } else {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeOtherAppPage(
-                                      role: widget.role,
-                                      // name: input_name,
-                                    )));
-                          }
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AuthPage_thankyou(
+                                    name: widget.name,
+                                    role: widget.role,
+                                  )));
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.6,
@@ -208,7 +207,7 @@ class _AuthPageState extends State<AuthPage> {
                               ]),
                           child: Center(
                             child: Text(
-                              'Login',
+                              'Donate',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
@@ -220,7 +219,7 @@ class _AuthPageState extends State<AuthPage> {
                       ),
 
                       SizedBox(
-                        height: 200,
+                        height: 330,
                       ),
                       IconButton(
                         color: Colors.black,
@@ -230,29 +229,11 @@ class _AuthPageState extends State<AuthPage> {
                         iconSize: 48,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Launch()));
+                              builder: (context) => AuthPage_list(
+                                    role: widget.role,
+                                  )));
                         },
                       ),
-                      // IconButton(
-                      //   color: Colors.black,
-                      //   icon: const Icon(Icons.arrow_forward),
-                      //   padding: const EdgeInsets.only(right: 250.0),
-                      //   // alignment: Alignment.centerLeft,
-                      //   iconSize: 48,
-                      //   onPressed: () {
-                      //     if (widget.role == "NGO") {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //           builder: (context) => HomeAppPage(
-                      //                 role: widget.role,
-                      //               )));
-                      //     } else {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //           builder: (context) => HomeOtherAppPage(
-                      //                 role: widget.role,
-                      //               )));
-                      //     }
-                      //   },
-                      // )
                     ],
                   ),
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './frontend_login.dart';
-import './main.dart';
+import 'main.dart';
+import 'main2.dart';
+// import 'main3.dart';
 // import 'package:flutter/widgets.dart';
 
 class AuthPage_ngo extends StatefulWidget {

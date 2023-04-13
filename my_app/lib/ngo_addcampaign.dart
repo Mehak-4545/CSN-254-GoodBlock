@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/frontend_listing.dart';
 import 'package:my_app/home_ngo.dart';
-import 'package:my_app/main.dart';
+// import 'package:my_app/main.dart';
 import './frontend_signup_individual.dart';
 import 'home.dart';
 import 'profile_page_individual.dart';
 import 'profile_page_corporation.dart';
 import 'profile_page_ngo.dart';
-import 'main.dart';
-import 'main2.dart';
-// import 'main.dart3';
 // import 'package:flutter/widgets.dart';
 
-class AuthPage extends StatefulWidget {
-  final String role;
+class AuthPage_addcampaign extends StatefulWidget {
+  final String name;
 
-  const AuthPage({Key? key, required this.role}) : super(key: key);
+  const AuthPage_addcampaign({Key? key, required this.name}) : super(key: key);
   @override
-  _AuthPageState createState() => _AuthPageState();
+  _AuthPage_addcampaignState createState() => _AuthPage_addcampaignState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
   @override
   Widget build(BuildContext context) {
-    String input_name = "temp";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),
@@ -60,9 +57,28 @@ class _AuthPageState extends State<AuthPage> {
                         height: 200,
                       ),
                       Text(
-                        'Welcome back!',
+                        'List a Campaign:',
                         style:
-                            TextStyle(fontSize: 35, color: Color(0xff0d557e)),
+                            TextStyle(fontSize: 28, color: Color(0xff0d557e)),
+                        // style:
+                        // TextStyle(
+                        //   // const color = const Color(0xffb74093);
+                        //   // color: Colors.(Color(0xffb74093)),
+                        //   fontSize: MediaQuery.of(context).size.width * 0.2,
+                        //   fontWeight: FontWeight.bold,
+                        //   // shadows: const [
+                        //   //   // BoxShadow(
+                        //   //   //   color: Colors.deepOrange,
+                        //   //   //   offset: Offset(5, 10),
+                        //   //   //   blurRadius: 10,
+                        //   //   // ),
+                        //   // ],
+                        // ),
+                      ),
+                      Text(
+                        widget.name,
+                        style:
+                            TextStyle(fontSize: 28, color: Color(0xff0d557e)),
                         // style:
                         // TextStyle(
                         //   // const color = const Color(0xffb74093);
@@ -79,14 +95,14 @@ class _AuthPageState extends State<AuthPage> {
                         // ),
                       ),
 
-                      Text(
-                        'Enter your login credentials',
-                        style:
-                            TextStyle(fontSize: 18, color: Color(0xff0d557e)),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
+                      // Text(
+                      //   'Enter your login credentials',
+                      //   style:
+                      //       TextStyle(fontSize: 18, color: Color(0xff0d557e)),
+                      // ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 0.05,
+                      // ),
 
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
@@ -101,20 +117,15 @@ class _AuthPageState extends State<AuthPage> {
                                 Radius.circular(20),
                               ),
                             ),
-                            hintText: 'User ID',
+                            hintText: 'Name of Canpaign',
                             hintStyle: TextStyle(
                               color: Color(0xff32637F),
                             ),
                             icon: Icon(
-                              Icons.mail_outline,
+                              Icons.people,
                               color: Color(0xff32637F),
                             ),
                           ),
-                          onChanged: (value) {
-                            setState(() {
-                              input_name = value;
-                            });
-                          },
                         ),
                       ),
                       const Divider(
@@ -131,7 +142,7 @@ class _AuthPageState extends State<AuthPage> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
-                          obscureText: true,
+                          obscureText: false,
                           style: TextStyle(color: Color(0xff32637F)),
                           decoration: InputDecoration(
                             filled: false,
@@ -142,12 +153,12 @@ class _AuthPageState extends State<AuthPage> {
                                 Radius.circular(20),
                               ),
                             ),
-                            hintText: 'Password',
+                            hintText: 'Projected Target',
                             hintStyle: TextStyle(
                               color: Color(0xff32637F),
                             ),
                             icon: Icon(
-                              Icons.lock_outline,
+                              Icons.money_rounded,
                               color: Color(0xff32637F),
                             ),
                           ),
@@ -173,22 +184,7 @@ class _AuthPageState extends State<AuthPage> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       GestureDetector(
-                        // onTap: () {},
-                        onTap: () {
-                          if (widget.role == "NGO") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeAppPage(
-                                      role: widget.role,
-                                      name: input_name,
-                                    )));
-                          } else {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeOtherAppPage(
-                                      role: widget.role,
-                                      // name: input_name,
-                                    )));
-                          }
-                        },
+                        onTap: () {},
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           padding: EdgeInsets.all(
@@ -208,7 +204,7 @@ class _AuthPageState extends State<AuthPage> {
                               ]),
                           child: Center(
                             child: Text(
-                              'Login',
+                              'Donate',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
@@ -230,29 +226,11 @@ class _AuthPageState extends State<AuthPage> {
                         iconSize: 48,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Launch()));
+                              builder: (context) => AuthPage_list(
+                                    role: "NGO",
+                                  )));
                         },
                       ),
-                      // IconButton(
-                      //   color: Colors.black,
-                      //   icon: const Icon(Icons.arrow_forward),
-                      //   padding: const EdgeInsets.only(right: 250.0),
-                      //   // alignment: Alignment.centerLeft,
-                      //   iconSize: 48,
-                      //   onPressed: () {
-                      //     if (widget.role == "NGO") {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //           builder: (context) => HomeAppPage(
-                      //                 role: widget.role,
-                      //               )));
-                      //     } else {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //           builder: (context) => HomeOtherAppPage(
-                      //                 role: widget.role,
-                      //               )));
-                      //     }
-                      //   },
-                      // )
                     ],
                   ),
                 ),

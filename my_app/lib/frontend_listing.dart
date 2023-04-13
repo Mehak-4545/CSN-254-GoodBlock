@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/profile_page_corporation.dart';
+import 'package:my_app/profile_page_ngo.dart';
 import './frontend_signup_individual.dart';
 import 'package:google_fonts/google_fonts.dart';
+import './home.dart';
+import 'donate_page.dart';
+import 'profile_page_individual.dart';
 
 // import 'package:flutter/widgets.dart';
 
@@ -9,11 +14,14 @@ void tmpFunction3() {
 }
 
 class AuthPage_list extends StatefulWidget {
+  final String role;
+
+  const AuthPage_list({Key? key, required this.role}) : super(key: key);
   @override
-  _AuthPageState createState() => _AuthPageState();
+  _AuthPage_listState createState() => _AuthPage_listState();
 }
 
-class _AuthPageState extends State<AuthPage_list> {
+class _AuthPage_listState extends State<AuthPage_list> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,7 +49,7 @@ class _AuthPageState extends State<AuthPage_list> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.arrow_back),
-              label: String.fromEnvironment('home'),
+              label: String.fromEnvironment('back'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
@@ -49,9 +57,31 @@ class _AuthPageState extends State<AuthPage_list> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: String.fromEnvironment('home'),
+              label: String.fromEnvironment('profile'),
             ),
           ],
+          onTap: (index) {
+            if (index == 0) {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomeOtherAppPage(role: widget.role)));
+            }
+            if (index == 1) {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomeOtherAppPage(role: widget.role)));
+            }
+            if (index == 2 && widget.role == "Individual") {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ProfileIndividual()));
+            }
+            if (index == 2 && widget.role == "Corporation") {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProfileCorporation()));
+            }
+            // if (widget.role == "Individual") {
+            //   Navigator.of(context).push(MaterialPageRoute(
+            //       builder: (context) => AuthPage_dummy()));
+            // }
+          },
           iconSize: 40,
           elevation: 5,
           fixedColor: const Color.fromARGB(255, 13, 85, 126),
@@ -154,16 +184,79 @@ class _AuthPageState extends State<AuthPage_list> {
                               // SizedBox(height: 12),
 
                               // SizedBox(height: 20),
-                              TextButton(
-                                child: Text(
-                                  "Contact us",
-                                  style: TextStyle(
-                                    color: Color(0xff000000),
-                                    fontSize: 12,
+                              new Expanded(
+                                  child: Flex(
+                                direction: Axis.horizontal,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        if (widget.role == "Corporation") {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileCorporation()));
+                                        }
+                                        if (widget.role == "Individual") {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileIndividual()));
+                                        }
+                                      },
+                                      child: Text(
+                                        "Contact us",
+                                        style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                onPressed: () {},
-                              ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AuthPage_donate(
+                                                      name: "SEEDS",
+                                                      role: widget.role,
+                                                    )));
+                                      },
+                                      child: Container(
+                                        height: 27,
+                                        width: 105,
+                                        padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.width *
+                                              0.02,
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff32637F),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(15),
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black87,
+                                                offset: Offset(3, 3),
+                                                blurRadius: 3,
+                                              )
+                                            ]),
+                                        child: Center(
+                                          child: Text('Donate',
+                                              style: GoogleFonts.notoSans(
+                                                  color: Color(0xFFFFFFFF),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )),
                             ],
                           ),
                         ),
@@ -226,16 +319,79 @@ class _AuthPageState extends State<AuthPage_list> {
                               // SizedBox(height: 12),
 
                               // SizedBox(height: 20),
-                              TextButton(
-                                child: Text(
-                                  "Contact us",
-                                  style: TextStyle(
-                                    color: Color(0xff000000),
-                                    fontSize: 12,
+                              new Expanded(
+                                  child: Flex(
+                                direction: Axis.horizontal,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        if (widget.role == "Corporation") {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileCorporation()));
+                                        }
+                                        if (widget.role == "Individual") {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileIndividual()));
+                                        }
+                                      },
+                                      child: Text(
+                                        "Contact us",
+                                        style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                onPressed: () {},
-                              ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AuthPage_donate(
+                                                      name: "Pratham",
+                                                      role: widget.role,
+                                                    )));
+                                      },
+                                      child: Container(
+                                        height: 27,
+                                        width: 105,
+                                        padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.width *
+                                              0.02,
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff32637F),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(15),
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black87,
+                                                offset: Offset(3, 3),
+                                                blurRadius: 3,
+                                              )
+                                            ]),
+                                        child: Center(
+                                          child: Text('Donate',
+                                              style: GoogleFonts.notoSans(
+                                                  color: Color(0xFFFFFFFF),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )),
                             ],
                           ),
                         ),
@@ -298,16 +454,90 @@ class _AuthPageState extends State<AuthPage_list> {
                               // SizedBox(height: 12),
 
                               // SizedBox(height: 20),
-                              TextButton(
-                                child: Text(
-                                  "Contact us",
-                                  style: TextStyle(
-                                    color: Color(0xff000000),
-                                    fontSize: 12,
+
+                              new Expanded(
+                                  child: Flex(
+                                direction: Axis.horizontal,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        if (widget.role == "Corporation") {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileCorporation()));
+                                        }
+                                        if (widget.role == "Individual") {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileIndividual()));
+                                        }
+                                      },
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileNGO(
+                                                        name: "Care India",
+                                                      )));
+                                        },
+                                        child: Text(
+                                          "Contact us",
+                                          style: TextStyle(
+                                            color: Color(0xff000000),
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                onPressed: () {},
-                              ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AuthPage_donate(
+                                                      name: "Care India",
+                                                      role: widget.role,
+                                                    )));
+                                      },
+                                      child: Container(
+                                        height: 27,
+                                        width: 105,
+                                        padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.width *
+                                              0.02,
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff32637F),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(15),
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black87,
+                                                offset: Offset(3, 3),
+                                                blurRadius: 3,
+                                              )
+                                            ]),
+                                        child: Center(
+                                          child: Text('Donate',
+                                              style: GoogleFonts.notoSans(
+                                                  color: Color(0xFFFFFFFF),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )),
                             ],
                           ),
                         ),
@@ -319,74 +549,7 @@ class _AuthPageState extends State<AuthPage_list> {
               SizedBox(
                 height: 10,
               ),
-
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  padding: EdgeInsets.all(
-                    MediaQuery.of(context).size.width * 0.02,
-                  ),
-                  decoration: BoxDecoration(
-                      color: Color(0xff32637F),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black87,
-                          offset: Offset(3, 3),
-                          blurRadius: 3,
-                        )
-                      ]),
-                  child: Center(
-                    child: Text('Donate',
-                        style: GoogleFonts.notoSans(
-                            color: Color(0xFFFFFFFF),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                ),
-              ),
-
-              // Container(
-              //   width: 330,
-              //   // top: 20,
-              //   height: 30,
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(10),
-              //     color: Color(0xFF32637F),
-              //   ),
-              //   child: ClipRRect(
-              //     borderRadius: BorderRadius.circular(20),
-              //     child: SizedBox(
-              //       height: 130,
-              //     ),
-              //   ),
-              // ),
             ],
-
-            //Navbar
-            //       bottomNavigationBar: BottomNavigationBar(
-            //   items: const <BottomNavigationBarItem>[
-            //     BottomNavigationBarItem(
-            //       icon: Icon(Icons.arrow_back),
-            //       label: String.fromEnvironment('home'),
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: Icon(Icons.home_outlined),
-            //       label: String.fromEnvironment('home'),
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: Icon(Icons.person),
-            //       label: String.fromEnvironment('home'),
-            //     ),
-            //   ],
-            //   iconSize: 40,
-            //   elevation: 5,
-            //   fixedColor: Color.fromARGB(255, 13, 85, 126),
-            //   backgroundColor: Color.fromARGB(255, 119, 177, 202),
-            // ),
           ),
         ),
       ),

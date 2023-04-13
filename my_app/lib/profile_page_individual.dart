@@ -56,9 +56,7 @@ class _ProfileIndividualPageState extends State<ProfileIndividualPage> {
       // backgroundColor: Color.fromARGB(255, 10, 63, 86) ,
       // backgroundColor: Color.fromARGB(255, 198, 234, 250) ,
       backgroundColor: Color.fromARGB(255, 198, 234, 250),
-      appBar: AppBar(
-        title: const Text('GoodBlock'),
-      ),
+
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(

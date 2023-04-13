@@ -18,7 +18,8 @@ void tmpFunction3() {
 }
 
 class ProfileNGO extends StatelessWidget {
-  const ProfileNGO({super.key});
+  final String name;
+  const ProfileNGO({super.key, required this.name});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
       // backgroundColor: Color.fromARGB(255, 10, 63, 86) ,
       // backgroundColor: Color.fromARGB(255, 198, 234, 250) ,
       backgroundColor: Color.fromARGB(255, 198, 234, 250),
-      appBar: AppBar(
-        title: const Text('GoodBlock'),
-      ),
+
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(

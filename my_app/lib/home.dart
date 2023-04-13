@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:my_app/profile_page_ngo.dart';
+import './frontend_login.dart';
 import 'profile_page_individual.dart';
 import 'profile_page_corporation.dart';
+import 'main.dart';
+import 'main2.dart';
+import 'dummy.dart';
+// import 'main3.dart';
+import 'frontend_listing.dart';
 // import 'main.dart';
 
 // void main() {
@@ -21,6 +27,14 @@ void tmpFunction3() {
   print('Funt corp');
 }
 
+// void _onItemTapped(int index) {
+//   if (index == 0) {
+//     Navigator.of(context).push(MaterialPageRoute(
+//         builder: (context) => HomeAppPage(
+//               role: widget.role,
+//             )));
+//   }
+// }
 // class HomeOtherApp extends StatelessWidget {
 //   const HomeOtherApp({super.key});
 //   // This widget is the root of your application.
@@ -61,26 +75,12 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
     return Scaffold(
       // backgroundColor: Color.fromARGB(255, 10, 63, 86) ,
       backgroundColor: Color.fromARGB(255, 198, 234, 250),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
-        child: AppBar(
-          backgroundColor: Color.fromARGB(255, 169, 212, 230),
-          leading: Image.asset(
-            'assets/images/icon.jpeg',
-            scale: 1,
-          ),
-          leadingWidth: 70,
-          title: Container(
-              // child:Image.asset('assets/images/top_bar.jpeg'),
-              ),
-          actions: [Image.asset('assets/images/options.jpeg')],
-        ),
-      ),
+
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/bg_login.png"),
+            image: AssetImage("assets/images/bg_login1.png"),
             fit: BoxFit.fill,
           ),
         ),
@@ -91,6 +91,9 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
             padding: const EdgeInsets.all(25),
             child: Column(
               children: <Widget>[
+                SizedBox(
+                  height: 120,
+                ),
                 SizedBox(
                   height: 195, // new change
                   // childAspectRatio:0.8;
@@ -125,7 +128,12 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           child: GestureDetector(
-                            onTap: tmpFunction1,
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      AuthPage_list(role: widget.role)));
+                            },
+                            // onTap: tmpFunction1,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
@@ -149,16 +157,11 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                             onTap: () {
                               if (widget.role == "Corporation") {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProfileCorporationPage()));
+                                    builder: (context) => AuthPage_dummy()));
                               }
-                              // if (widget.role == "NGO") {
-                              //   Navigator.of(context).push(MaterialPageRoute(
-                              //       builder: (context) => ProfileNGO()));
-                              // }
                               if (widget.role == "Individual") {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ProfileIndividual()));
+                                    builder: (context) => AuthPage_dummy()));
                               }
                             },
                             child: ClipRRect(
@@ -181,7 +184,16 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           child: GestureDetector(
-                            onTap: tmpFunction2,
+                            onTap: () {
+                              if (widget.role == "Corporation") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => AuthPage_dummy()));
+                              }
+                              if (widget.role == "Individual") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => AuthPage_dummy()));
+                              }
+                            },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
@@ -207,13 +219,32 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.arrow_back),
-            label: String.fromEnvironment('home'),
+            label: String.fromEnvironment('back'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: String.fromEnvironment('home'),
+            label: String.fromEnvironment('profile'),
           ),
         ],
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => AuthPage(role: widget.role)));
+          }
+          if (index == 1 && widget.role == "Corporation") {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ProfileCorporation()));
+          }
+          if (index == 1 && widget.role == "Individual") {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ProfileIndividual()));
+          }
+
+          // if (widget.role == "Individual") {
+          //   Navigator.of(context).push(MaterialPageRoute(
+          //       builder: (context) => AuthPage_dummy()));
+          // }
+        },
         iconSize: 40,
         elevation: 5,
         fixedColor: Color.fromARGB(255, 13, 85, 126),

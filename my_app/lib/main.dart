@@ -29,8 +29,8 @@ class Launch extends StatelessWidget {
     return MaterialApp(
       title: 'Sample App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          // primarySwatch: Colors.blue,
+          ),
       home: const LaunchPage(),
     );
   }
@@ -62,7 +62,14 @@ class _LaunchPageState extends State<LaunchPage> {
       // appBar: AppBar(
       //   title: const Text('Shinjan'),
       // ),
-      body: Center(
+      body: Container(
+        // constraints: BoxConstraints.expand(),
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        //     image: AssetImage("assets/images/bg_login1.png"),
+        //     fit: BoxFit.fill,
+        //   ),
+        // ),
         child: SingleChildScrollView(
           //child: Card(
           child: Container(
