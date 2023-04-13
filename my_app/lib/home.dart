@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'main.dart';
 
-void main() {
-  runApp(const SampleApp());
-}
+// void main() {
+//   runApp(const SampleApp());
+// }
 
 void tmpFunction1() {
   print('Funt ngo');
@@ -96,10 +96,8 @@ class _SampleAppPageState extends State<SampleAppPage> {
                   height: 15,
                 ),
                 SizedBox(
-                  
                   height: 440,
                   child: GridView.count(
-                    
                     shrinkWrap: true,
                     childAspectRatio: 0.8,
                     scrollDirection: Axis.vertical,
@@ -118,8 +116,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
                             onTap: tmpFunction1,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset('assets/images/find.jpeg',height: 150,
-                        width: 50,),
+                              child: Image.asset(
+                                'assets/images/find.jpeg',
+                                height: 150,
+                                width: 50,
+                              ),
                             ),
                           ),
                         ),
@@ -136,8 +137,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
                             onTap: tmpFunction3,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset('assets/images/history.jpeg',height: 150,
-                        width: 50,),
+                              child: Image.asset(
+                                'assets/images/history.jpeg',
+                                height: 150,
+                                width: 50,
+                              ),
                             ),
                           ),
                         ),
@@ -149,17 +153,16 @@ class _SampleAppPageState extends State<SampleAppPage> {
                         child: Card(
                           elevation: 10,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                              
-                              ),
+                              borderRadius: BorderRadius.circular(10)),
                           child: GestureDetector(
-                            
                             onTap: tmpFunction2,
                             child: ClipRRect(
-                              
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset('assets/images/about_us.jpeg',height: 150,
-                        width: 50,),
+                              child: Image.asset(
+                                'assets/images/about_us.jpeg',
+                                height: 150,
+                                width: 50,
+                              ),
                             ),
                           ),
                         ),

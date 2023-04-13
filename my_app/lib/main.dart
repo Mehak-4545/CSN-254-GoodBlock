@@ -1,166 +1,20 @@
-import 'package:flutter/services.dart';
-import 'package:web3dart/web3dart.dart';
-import 'package:http/http.dart';
-import 'package:convert/convert.dart';
-import './address.dart';
-import 'package:flutter/widgets.dart';
-import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// Replace these with your contract's ABI and address
-const String contractAbi = """[
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "email",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "password",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "contact",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "Address",
-						"type": "string"
+void main() {
+  runApp(const SampleApp());
 					}
-				],
-				"indexed": false,
-				"internalType": "struct Corporation.corporation",
-				"name": "",
-				"type": "tuple"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "",
-				"type": "string"
+
+void tmpFunction1() {
+  print('Funt ngo');
 			}
-		],
-		"name": "_createCorp_event",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_userName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
+
+void tmpFunction2() {
+  print('Funt indv');
 			}
-		],
-		"name": "_login",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "successful_login",
-				"type": "bool"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "contact",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "email",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "Address",
-				"type": "string"
-			}
-		],
-		"name": "_login_event",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_contact",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_Address",
-				"type": "string"
-			}
-		],
-		"name": "_signup",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"name": "_signup_event",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+
+void tmpFunction3() {
+  print('Funt corp');
 			}
 		],
 		"name": "Corporations",
@@ -190,121 +44,105 @@ const String contractAbi = """[
 				"name": "Address",
 				"type": "string"
 			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
-]"""; // ABI as a string
-const String contractAddress =
-    '0x07B2Da30288E1BF574F390A0C44ef08cDA4e4617'; // Address as a hex string
 
-late DeployedContract ngoContract, individualContract, corporationContract;
-final Map<String, DeployedContract> allContracts = {
-  "ngo": ngoContract,
-  "individual": individualContract,
-  "corporation": corporationContract
-};
-late Client httpClient;
-late Web3Client client;
+class SampleAppPage extends StatefulWidget {
+  const SampleAppPage({super.key});
 
-void init() async {
-  print(ngo);
-  final ngoAbi = await rootBundle.loadString("../contracts/abi/ngo.json");
-  final individualAbi =
-      await rootBundle.loadString("../contracts/abi/individual.json");
-  final corporationAbi =
-      await rootBundle.loadString("../contracts/abi/corporation.json");
-  ngoContract = DeployedContract(
-    ContractAbi.fromJson(ngoAbi, ngo),
-    EthereumAddress.fromHex(ngo),
-  );
-  corporationContract = DeployedContract(
-    ContractAbi.fromJson(corporationAbi, corporation),
-    EthereumAddress.fromHex(corporation),
-  );
-  individualContract = DeployedContract(
-    ContractAbi.fromJson(individualAbi, individual),
-    EthereumAddress.fromHex(individual),
-  );
-  httpClient = Client();
-  client = Web3Client("https://testnet.aurora.dev/", httpClient);
+  @override
+  State<SampleAppPage> createState() => _SampleAppPageState();
 }
 
-Future<dynamic> callContractFunction(
-    String contractName, String funcName, List parameter) async {
-  // Encode the function call with its arguments
-  final contract = allContracts[contractName];
-  print("hello");
-  final function = contract!.function(funcName);
-  final transferEvent = contract.event('${funcName}_event');
-  client
-      .events(FilterOptions.events(contract: contract, event: transferEvent))
-      .take(1)
-      .listen((event) {
-    final decoded = transferEvent.decodeResults(event.topics!, event.data!);
+class _SampleAppPageState extends State<SampleAppPage> {
+  // Default placeholder text.
+  String textToShow = 'I Like Flutter';
 
-    final from = decoded[0];
-    print(
-        '----------------------------------${from[0]}------------------------------------------');
-    return from;
+  void _updateText() {
+    setState(() {
+      // Update the text.
+      textToShow = 'Flutter is Awesome!';
   });
-  // Get the current gas price
-  final gasPrice = await client.getGasPrice();
-
-  // Create the transaction to call the contract function
-  final transaction = Transaction.callContract(
-    contract: contract,
-    function: function,
-    parameters: parameter,
-    maxGas: 100000,
-    gasPrice: gasPrice,
-    value: EtherAmount.zero(),
-  );
-
-  // Sign and send the transaction
-  final credentials = EthPrivateKey.fromHex(
-      '617bded8c194ba0e803cdb16959c2d6201174ea27f0a2957d523bf141a34b6e3');
-  // final signedTransaction = await client.signTransaction(
-  //   credentials,
-  //   transaction,
-  //   chainId: 1313161555, // Chain ID of the Aurora testnet
-  // );
-  final transactionHash = await client.sendTransaction(credentials, transaction,
-      chainId: 1313161555);
-  print(transactionHash);
-  // Wait for the transaction to be mined
-  dynamic receipt = await client.getTransactionReceipt(transactionHash);
-  print(receipt);
-  while (receipt == null) {
-    receipt = await client.getTransactionReceipt(transactionHash);
   }
 
-  print("Receipt : ");
-  print(receipt);
-  print("Receipt over");
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // backgroundColor: Color.fromARGB(255, 10, 63, 86) ,
+      // backgroundColor: Color.fromARGB(255, 198, 234, 250) ,
+      backgroundColor: Color.fromARGB(255, 198, 234, 250),
+      appBar: AppBar(
+        title: const Text('GoodBlock'),
+      ),
+      body: Container(
+          // constraints: BoxConstraints.expand(),
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //     image: AssetImage("assets/images/profile_bg.png"),
+          //     fit: BoxFit.fill,
+          //   ),
+          // ),
+          // child: SingleChildScrollView(
+          child: Column(
+        children: [
+          SizedBox(
+            height: 190,
+          ),
+          // Container(
+          //   height: 500, //changed - yaha height set ki hai
+          //   // color: const Color(0x00000000),
+          //   // padding: const EdgeInsets.all(25),
 
-  // Decode the return value of the contract function
-  dynamic info = await client.getTransactionByHash(transactionHash);
-  print('Return value: ${receipt}');
+          //   alignment: Alignment.center,
+          //   child: SizedBox(
+          //     child: Card(
+          //         // color: Color.fromRGBO(186, 220, 235, 0),
+          //         // color: Color(0xFFF0F4F5),
+          //         // elevation:6,
+          //         semanticContainer: true,
+          //         // clipBehavior: Clip.antiAliasWithSaveLayer,
+          //         child: Column(
+          //           children: [
+          // Container(
+          //   height: 300,
+          //   // color: Color.fromRGBO(24,233, 111, 0.0),
+          // ),
+          SizedBox(
+            height: 50,
+          ),
+          Text(
+            "DONATE TO:",
+            // style:
+            // color: Color.fromARGB(98, 42, 43, 62),
+            // fontSize: 20,
+            // fontWeight: FontWeight.w900,
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          Text(
+            "SEEDS",
+            // style: GoogleFonts.megrim(
+            //   color: Color.fromARGB(97, 80, 6, 39),
+            //   fontSize: 20,
+            //   fontWeight: FontWeight.w900),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          SizedBox(
+            width: 200,
+            child: TextField(
+            decoration: new InputDecoration(labelText: "Enter the amount"),
+            keyboardType: TextInputType.number,
+            // Only numbers can be entered
+          ),
+          ),
+        ],
+      )),
+  );
+    //       ),
+    //     ],),
+    //   ),
+  // );
 }
-
-void main() {
-  // await callContractFunction();
-  dynamic ans = ngo_signup("Tanmay", "email.com", "vava", "2341", "erwr");
-}
-
-Future<dynamic> ngo_login(String userName, String password) {
-  String functionName = "_login";
-  String contractName = "ngo";
-  List parameter = [userName, password];
-  return callContractFunction(functionName, contractName, parameter);
-}
-
-Future<dynamic> ngo_signup(String userName, String email, String password,
-    String contact, String address) {
-  String functionName = "_signup";
-  String contractName = "ngo";
-  List parameter = [userName, email, password, contact, address];
-  print("ngo signed in");
-  return callContractFunction(functionName, contractName, parameter);
 }
