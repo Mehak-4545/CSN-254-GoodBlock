@@ -12,11 +12,11 @@ class AuthPage_indi extends StatefulWidget {
 class _AuthPageState extends State<AuthPage_indi> {
   @override
   Widget build(BuildContext context) {
-    String input_name = "temp",
-        input_password = "pwd",
-        input_email = "temporary@gmail.com",
-        input_contact_number = "1234567890",
-        input_address = "roorkee";
+    String input_name = "",
+        input_password = "",
+        input_email = "",
+        input_contact_number = "",
+        input_address = "";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),

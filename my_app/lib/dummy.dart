@@ -46,6 +46,8 @@ class _AuthPage_dummyState extends State<AuthPage_dummy> {
               fit: BoxFit.fill,
             ),
           ),
+
+          
         ),
       ),
     );

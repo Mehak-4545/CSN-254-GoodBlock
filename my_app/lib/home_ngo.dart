@@ -7,6 +7,8 @@ import 'package:my_app/dummy.dart';
 import './frontend_login.dart';
 import 'package:my_app/ngo_addcampaign.dart';
 import 'package:my_app/frontend_listing.dart';
+import 'package:my_app/about_us.dart';
+import 'package:my_app/history.dart';
 // import 'main.dart';
 
 // void main() {
@@ -148,7 +150,7 @@ class _HomeAppPageState extends State<HomeAppPage> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AuthPage_dummy()));
+                                  builder: (context) => AuthPage_history()));
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -172,7 +174,7 @@ class _HomeAppPageState extends State<HomeAppPage> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AuthPage_dummy()));
+                                  builder: (context) => AuthPage_aboutus()));
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
