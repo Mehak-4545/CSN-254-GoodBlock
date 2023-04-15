@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
 
-void main() {}
+import 'web3/interactor.dart';
 
-class GoodBlock extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ,
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initC();
+  // await callContractFunction(
+  //     "ngo", "_signup", ["c", "b", "b", "b", "b"], "_signup_event");
+  // await callContractFunction("ngo", "_login", ["c", "b"], "_login_event");
+  await callContractFunction("ngo", "_addCampaign",
+      ["c", "doing something good", BigInt.from(20)], "_addCampaign_event");
+  // await callContractFunction(
+  //     "contractName", "_getAllNgos", [], "_getAllNgos_event");
 }
 
-class TestHome extends StatefulWidget {
-  const TestHome({super.key});
+// class GoodBlock extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: ,
+//     );
+//   }
+// }
 
-  @override
-  State<TestHome> createState() => _TestHomeState();
-}
+// class TestHome extends StatefulWidget {
+//   const TestHome({super.key});
 
-class _TestHomeState extends State<TestHome> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
+//   @override
+//   State<TestHome> createState() => _TestHomeState();
+// }
+
+// class _TestHomeState extends State<TestHome> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }

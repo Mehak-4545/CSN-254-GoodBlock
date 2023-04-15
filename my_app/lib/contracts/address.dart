@@ -1,3 +1,3 @@
-const String ngo = "0xfabB4C405Bb822399F6Db880C43e46B975E30f06",
-    corporation = "0xE7af936D66Da1543aeFAdb3B13d02a9e5f7ea670",
-    individual = "0x1505551dB7395351AeE9b7Fc345F85072Fda383A";
+const String ngo = "0xb55aFd23531B2C069F18017085af81cFf22640f9",
+    corporation = "0x263804fd4c1d6262ff31CEe7016C8D8FC5b24bBA",
+    individual = "0x734eE8b7c9409C293bA83AdC5797eBbafC769423";
