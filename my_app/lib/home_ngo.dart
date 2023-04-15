@@ -123,7 +123,8 @@ class _HomeAppPageState extends State<HomeAppPage> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => (AuthPage_dummy())));
+                                  builder: (context) => (AuthPage_addcampaign(
+                                      name: widget.name))));
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),

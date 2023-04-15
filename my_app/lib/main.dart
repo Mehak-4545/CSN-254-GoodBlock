@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/frontend_listing.dart';
 import 'package:my_app/frontend_signup_corp.dart';
 import './frontend_signup_ngo.dart';
 import './frontend_signup_individual.dart';
 // import 'main.dart';
 
 void main() {
-  runApp(const Launch());
+  runApp(const TestWidget());
+}
+
+class TestWidget extends StatelessWidget {
+  const TestWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: AuthPage_list(role: "Ngo", name: "hlt",),
+    );
+  }
 }
 
 void tmpFunction1() {

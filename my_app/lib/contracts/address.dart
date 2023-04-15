@@ -1,0 +1,4 @@
+const String ngo = "0xfabB4C405Bb822399F6Db880C43e46B975E30f06",
+    corporation = "0xE7af936D66Da1543aeFAdb3B13d02a9e5f7ea670",
+    individual = "0x1505551dB7395351AeE9b7Fc345F85072Fda383A",
+    test = "0x3bF7D0cfa43b27c96c397cf9f8AB97578355c9a4";

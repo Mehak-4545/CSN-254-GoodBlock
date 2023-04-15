@@ -22,7 +22,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
-    String input_name = "temp";
+    String input_name = "temp", input_password = "pwd";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),
@@ -151,6 +151,11 @@ class _AuthPageState extends State<AuthPage> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_password = value;
+                            });
+                          },
                         ),
                       ),
 

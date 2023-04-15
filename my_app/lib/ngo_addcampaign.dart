@@ -20,6 +20,9 @@ class AuthPage_addcampaign extends StatefulWidget {
 class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
   @override
   Widget build(BuildContext context) {
+    String input_campaignname = "cname",
+        input_campaignmotto = "cmotto",
+        input_targetamount = "tamount";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),
@@ -36,17 +39,6 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
           child: Column(
             children: [
               Container(
-                // decoration: BoxDecoration(
-                //   gradient: LinearGradient(
-                //     colors: [
-                //       Colors.red.shade500.withOpacity(0.8),
-                //       Colors.blueGrey.shade900.withOpacity(0.8),
-                //       Colors.white.withOpacity(0.2),
-                //     ],
-                //     begin: Alignment.topCenter,
-                //     end: Alignment.bottomCenter,
-                //   ),
-                // ),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -60,49 +52,12 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                         'List a Campaign:',
                         style:
                             TextStyle(fontSize: 28, color: Color(0xff0d557e)),
-                        // style:
-                        // TextStyle(
-                        //   // const color = const Color(0xffb74093);
-                        //   // color: Colors.(Color(0xffb74093)),
-                        //   fontSize: MediaQuery.of(context).size.width * 0.2,
-                        //   fontWeight: FontWeight.bold,
-                        //   // shadows: const [
-                        //   //   // BoxShadow(
-                        //   //   //   color: Colors.deepOrange,
-                        //   //   //   offset: Offset(5, 10),
-                        //   //   //   blurRadius: 10,
-                        //   //   // ),
-                        //   // ],
-                        // ),
                       ),
                       Text(
                         widget.name,
                         style:
                             TextStyle(fontSize: 28, color: Color(0xff0d557e)),
-                        // style:
-                        // TextStyle(
-                        //   // const color = const Color(0xffb74093);
-                        //   // color: Colors.(Color(0xffb74093)),
-                        //   fontSize: MediaQuery.of(context).size.width * 0.2,
-                        //   fontWeight: FontWeight.bold,
-                        //   // shadows: const [
-                        //   //   // BoxShadow(
-                        //   //   //   color: Colors.deepOrange,
-                        //   //   //   offset: Offset(5, 10),
-                        //   //   //   blurRadius: 10,
-                        //   //   // ),
-                        //   // ],
-                        // ),
                       ),
-
-                      // Text(
-                      //   'Enter your login credentials',
-                      //   style:
-                      //       TextStyle(fontSize: 18, color: Color(0xff0d557e)),
-                      // ),
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.05,
-                      // ),
 
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
@@ -117,7 +72,7 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                                 Radius.circular(20),
                               ),
                             ),
-                            hintText: 'Name of Canpaign',
+                            hintText: 'Name of Campaign',
                             hintStyle: TextStyle(
                               color: Color(0xff32637F),
                             ),
@@ -126,6 +81,11 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_campaignname = value;
+                            });
+                          },
                         ),
                       ),
                       const Divider(
@@ -142,6 +102,47 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
+                          style: TextStyle(color: Color(0xff32637F)),
+                          decoration: InputDecoration(
+                            filled: false,
+                            fillColor: Colors.blueGrey.withOpacity(0.8),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            hintText: 'Campaign Motto',
+                            hintStyle: TextStyle(
+                              color: Color(0xff32637F),
+                            ),
+                            icon: Icon(
+                              Icons.people,
+                              color: Color(0xff32637F),
+                            ),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_campaignmotto = value;
+                            });
+                          },
+                        ),
+                      ),
+                      const Divider(
+                        color: Color(0xff0d557e),
+                        height: 0,
+                        // width: 300,
+                        thickness: 2,
+                        indent: 57,
+                        endIndent: 55,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: TextFormField(
                           obscureText: false,
                           style: TextStyle(color: Color(0xff32637F)),
                           decoration: InputDecoration(
@@ -153,7 +154,7 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                                 Radius.circular(20),
                               ),
                             ),
-                            hintText: 'Projected Target',
+                            hintText: 'Projected Target Amount',
                             hintStyle: TextStyle(
                               color: Color(0xff32637F),
                             ),
@@ -162,6 +163,11 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_targetamount = value;
+                            });
+                          },
                         ),
                       ),
 
@@ -172,14 +178,7 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                         indent: 57,
                         endIndent: 55,
                       ),
-                      //Button Container
-                      // Container(
-                      //   margin: EdgeInsets.all(25),
-                      //   child: FlatButton(
-                      //     child: Text('SignUp', style: TextStyle(fontSize: 20.0),),
-                      //     onPressed: () {},
-                      //   ),
-                      // ),
+
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),

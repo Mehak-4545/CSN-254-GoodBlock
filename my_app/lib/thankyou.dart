@@ -15,15 +15,19 @@ void tmpFunction2() {
 }
 
 class AuthPage_thankyou extends StatefulWidget {
-  final String name, role;
+  final String name_of_ngo, name_of_corporation, role;
 
-  const AuthPage_thankyou({Key? key, required this.name, required this.role})
+  const AuthPage_thankyou(
+      {Key? key,
+      required this.name_of_ngo,
+      required this.name_of_corporation,
+      required this.role})
       : super(key: key);
   @override
-  _AuthPageState createState() => _AuthPageState();
+  _AuthPage_thankyouState createState() => _AuthPage_thankyouState();
 }
 
-class _AuthPageState extends State<AuthPage_thankyou> {
+class _AuthPage_thankyouState extends State<AuthPage_thankyou> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,17 +46,6 @@ class _AuthPageState extends State<AuthPage_thankyou> {
           child: Column(
             children: [
               Container(
-                // decoration: BoxDecoration(
-                //   gradient: LinearGradient(
-                //     colors: [
-                //       Colors.red.shade500.withOpacity(0.8),
-                //       Colors.blueGrey.shade900.withOpacity(0.8),
-                //       Colors.white.withOpacity(0.2),
-                //     ],
-                //     begin: Alignment.topCenter,
-                //     end: Alignment.bottomCenter,
-                //   ),
-                // ),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -82,7 +75,7 @@ class _AuthPageState extends State<AuthPage_thankyou> {
                         // ),
                       ),
                       Text(
-                        widget.name,
+                        widget.name_of_ngo,
                         style:
                             TextStyle(fontSize: 28, color: Color(0xff0d557e)),
                         // style:
@@ -112,27 +105,6 @@ class _AuthPageState extends State<AuthPage_thankyou> {
 
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
-                        // child: TextFormField(
-                        //   style: TextStyle(color: Color(0xff32637F)),
-                        //   decoration: InputDecoration(
-                        //     filled: false,
-                        //     fillColor: Colors.blueGrey.withOpacity(0.8),
-                        //     border: OutlineInputBorder(
-                        //       borderSide: BorderSide.none,
-                        //       borderRadius: BorderRadius.all(
-                        //         Radius.circular(20),
-                        //       ),
-                        //     ),
-                        //     hintText: 'Name of NGO',
-                        //     hintStyle: TextStyle(
-                        //       color: Color(0xff32637F),
-                        //     ),
-                        //     icon: Icon(
-                        //       Icons.people,
-                        //       color: Color(0xff32637F),
-                        //     ),
-                        //   ),
-                        // ),
                       ),
                       // const Divider(
                       //   color: Color(0xff0d557e),
@@ -247,8 +219,10 @@ class _AuthPageState extends State<AuthPage_thankyou> {
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AuthPage_donate(
-                                    name: widget.name,
+                                    name_of_ngo: widget.name_of_ngo,
                                     role: widget.role,
+                                    name_of_corporation: widget.name_of_corporation,
+                                    // widget.name_of_corporation,
                                   )));
                         },
                       ),

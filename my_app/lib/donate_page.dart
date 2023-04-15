@@ -15,9 +15,13 @@ void tmpFunction2() {
 }
 
 class AuthPage_donate extends StatefulWidget {
-  final String name, role; //name of NGO
+  final String name_of_ngo, name_of_corporation, role; //name of NGO
 
-  const AuthPage_donate({Key? key, required this.name, required this.role})
+  const AuthPage_donate(
+      {Key? key,
+      required this.name_of_ngo,
+      required this.name_of_corporation,
+      required this.role})
       : super(key: key);
   @override
   _AuthPageState createState() => _AuthPageState();
@@ -26,6 +30,7 @@ class AuthPage_donate extends StatefulWidget {
 class _AuthPageState extends State<AuthPage_donate> {
   @override
   Widget build(BuildContext context) {
+    String input_ngo_name = "ngo_name", input_amount = "amt";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),
@@ -42,17 +47,6 @@ class _AuthPageState extends State<AuthPage_donate> {
           child: Column(
             children: [
               Container(
-                // decoration: BoxDecoration(
-                //   gradient: LinearGradient(
-                //     colors: [
-                //       Colors.red.shade500.withOpacity(0.8),
-                //       Colors.blueGrey.shade900.withOpacity(0.8),
-                //       Colors.white.withOpacity(0.2),
-                //     ],
-                //     begin: Alignment.topCenter,
-                //     end: Alignment.bottomCenter,
-                //   ),
-                // ),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -66,59 +60,16 @@ class _AuthPageState extends State<AuthPage_donate> {
                         'Donate to:',
                         style:
                             TextStyle(fontSize: 28, color: Color(0xff0d557e)),
-                        // style:
-                        // TextStyle(
-                        //   // const color = const Color(0xffb74093);
-                        //   // color: Colors.(Color(0xffb74093)),
-                        //   fontSize: MediaQuery.of(context).size.width * 0.2,
-                        //   fontWeight: FontWeight.bold,
-                        //   // shadows: const [
-                        //   //   // BoxShadow(
-                        //   //   //   color: Colors.deepOrange,
-                        //   //   //   offset: Offset(5, 10),
-                        //   //   //   blurRadius: 10,
-                        //   //   // ),
-                        //   // ],
-                        // ),
                       ),
+
                       Text(
-                        widget.name,
+                        widget.name_of_ngo,
                         style:
                             TextStyle(fontSize: 28, color: Color(0xff0d557e)),
                       ),
 
-                      // Text(
-                      //   'Enter your login credentials',
-                      //   style:
-                      //       TextStyle(fontSize: 18, color: Color(0xff0d557e)),
-                      // ),
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.05,
-                      // ),
-
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
-                        // child: TextFormField(
-                        //   style: TextStyle(color: Color(0xff32637F)),
-                        //   decoration: InputDecoration(
-                        //     filled: false,
-                        //     fillColor: Colors.blueGrey.withOpacity(0.8),
-                        //     border: OutlineInputBorder(
-                        //       borderSide: BorderSide.none,
-                        //       borderRadius: BorderRadius.all(
-                        //         Radius.circular(20),
-                        //       ),
-                        //     ),
-                        //     hintText: 'Name of NGO',
-                        //     hintStyle: TextStyle(
-                        //       color: Color(0xff32637F),
-                        //     ),
-                        //     icon: Icon(
-                        //       Icons.people,
-                        //       color: Color(0xff32637F),
-                        //     ),
-                        //   ),
-                        // ),
                       ),
                       // const Divider(
                       //   color: Color(0xff0d557e),
@@ -155,6 +106,11 @@ class _AuthPageState extends State<AuthPage_donate> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_amount = value;
+                            });
+                          },
                         ),
                       ),
 
@@ -184,7 +140,9 @@ class _AuthPageState extends State<AuthPage_donate> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AuthPage_thankyou(
-                                    name: widget.name,
+                                    name_of_ngo: widget.name_of_ngo,
+                                    name_of_corporation:
+                                        widget.name_of_corporation,
                                     role: widget.role,
                                   )));
                         },
@@ -231,7 +189,7 @@ class _AuthPageState extends State<AuthPage_donate> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AuthPage_list(
                                     role: widget.role,
-                                    name: widget.name,
+                                    name: widget.name_of_ngo,
                                   )));
                         },
                       ),

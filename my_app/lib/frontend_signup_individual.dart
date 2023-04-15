@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/home.dart';
+import 'package:my_app/web3/interactor.dart';
 import './frontend_login.dart';
 // import 'package:flutter/widgets.dart';
 
@@ -10,6 +12,11 @@ class AuthPage_indi extends StatefulWidget {
 class _AuthPageState extends State<AuthPage_indi> {
   @override
   Widget build(BuildContext context) {
+    String input_name = "temp",
+        input_password = "pwd",
+        input_email = "temporary@gmail.com",
+        input_contact_number = "1234567890",
+        input_address = "roorkee";
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffC6EAFA),
@@ -93,10 +100,15 @@ class _AuthPageState extends State<AuthPage_indi> {
                               color: Color(0xff32637F),
                             ),
                             icon: Icon(
-                              Icons.person_2_outlined,
+                              Icons.person_outline_rounded,
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_name = value;
+                            });
+                          },
                         ),
                       ),
                       const Divider(
@@ -133,6 +145,11 @@ class _AuthPageState extends State<AuthPage_indi> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_email = value;
+                            });
+                          },
                         ),
                       ),
 
@@ -158,6 +175,7 @@ class _AuthPageState extends State<AuthPage_indi> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
+                          keyboardType: TextInputType.numberWithOptions(),
                           style: TextStyle(color: Color(0xff32637F)),
                           decoration: InputDecoration(
                             filled: false,
@@ -177,6 +195,53 @@ class _AuthPageState extends State<AuthPage_indi> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_contact_number = value;
+                            });
+                          },
+                        ),
+                      ),
+                      const Divider(
+                        color: Color(0xff0d557e),
+                        height: 0,
+                        // width: 300,
+                        thickness: 2,
+                        indent: 57,
+                        endIndent: 55,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: TextFormField(
+                          keyboardType: TextInputType.numberWithOptions(),
+                          style: TextStyle(color: Color(0xff32637F)),
+                          decoration: InputDecoration(
+                            filled: false,
+                            fillColor: Colors.blueGrey.withOpacity(0.8),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            hintText: 'Address',
+                            hintStyle: TextStyle(
+                              color: Color(0xff32637F),
+                            ),
+                            icon: Icon(
+                              Icons.house_outlined,
+                              color: Color(0xff32637F),
+                            ),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_address = value;
+                            });
+                          },
                         ),
                       ),
                       const Divider(
@@ -214,6 +279,11 @@ class _AuthPageState extends State<AuthPage_indi> {
                               color: Color(0xff32637F),
                             ),
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              input_password = value;
+                            });
+                          },
                         ),
                       ),
                       const Divider(
@@ -228,7 +298,20 @@ class _AuthPageState extends State<AuthPage_indi> {
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          await callContractFunction("individual", "_signup", [
+                            input_name,
+                            input_email,
+                            input_password,
+                            input_contact_number,
+                            input_address
+                          ]);
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AuthPage(role: "individual")),
+                              (route) => false);
+                        },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           padding: EdgeInsets.all(

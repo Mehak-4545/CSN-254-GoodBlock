@@ -17,12 +17,32 @@ class AuthPage_list extends StatefulWidget {
   final String role;
   final String name;
 
-  const AuthPage_list({Key? key, required this.role, required this.name}) : super(key: key);
+  const AuthPage_list({Key? key, required this.role, required this.name})
+      : super(key: key);
   @override
   _AuthPage_listState createState() => _AuthPage_listState();
 }
 
 class _AuthPage_listState extends State<AuthPage_list> {
+  final List<String> name_of_ngo = <String>['SEEDS', 'Pratham', 'Care India'];
+  final List<String> name_campaign = <String>['moto1', 'moto2', 'moto3'];
+  final List<String> motto = <String>[
+    'Disaster preparedness, disaster response and rehabilitating homes and community infrastructure',
+    'Quality education for underprivileged children in India and providing them with necessary knowledge and support.',
+    'Empower women and girls from poor and marginalised communities',
+  ];
+  var ngo = <String>[];
+  var camp = <String>[];
+  var mo = <String>[];
+
+  @override
+  void initState() {
+    ngo = name_of_ngo;
+    camp = name_campaign;
+    mo = motto;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,15 +91,21 @@ class _AuthPage_listState extends State<AuthPage_list> {
             }
             if (index == 1) {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomeOtherAppPage(role: widget.role,name: widget.name,)));
+                  builder: (context) => HomeOtherAppPage(
+                        role: widget.role,
+                        name: widget.name,
+                      )));
             }
             if (index == 2 && widget.role == "Individual") {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileIndividualPage(name: widget.name)));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      ProfileIndividualPage(name: widget.name)));
             }
             if (index == 2 && widget.role == "Corporation") {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProfileCorporationPage(name: widget.name,)));
+                  builder: (context) => ProfileCorporationPage(
+                        name: widget.name,
+                      )));
             }
             // if (widget.role == "Individual") {
             //   Navigator.of(context).push(MaterialPageRoute(
@@ -138,400 +164,314 @@ class _AuthPage_listState extends State<AuthPage_list> {
                 height: 10,
               ),
               Container(
-                width: 330,
-                // top: 20,
-                // height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xFFF0F4F5),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: SizedBox(
-                    height: 130,
-                    child: Flex(
-                      direction:
-                          Axis.horizontal, // arrange children horizontally
-                      children: [
-                        Expanded(
-                          flex: 1, // take up 2/3 of the available space
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                            alignment: AlignmentDirectional.topCenter,
-                            child: Image.asset(
-                              'assets/images/ngo.png',
-                            ),
+                  child: ListView.builder(
+                      itemCount: name_campaign.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 330,
+                          // top: 20,
+                          // height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFFF0F4F5),
                           ),
-                        ),
-                        Expanded(
-                          flex: 4, // take up 1/3 of the available space
-                          child: Column(
-                            children: [
-                              SizedBox(height: 11),
-                              Text(
-                                'SEEDS                                                ',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.notoSans(
-                                  color: Color(0xFFDB473E),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              Text(
-                                'Disaster preparedness, disaster response and rehabilitating homes and community infrastructure',
-                                style: GoogleFonts.notoSans(
-                                    color: Color(0xFF000000),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500),
-                              ),
-
-                              // SizedBox(height: 12),
-
-                              // SizedBox(height: 20),
-                              new Expanded(
-                                  child: Flex(
-                                direction: Axis.horizontal,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: SizedBox(
+                              height: 130,
+                              child: Flex(
+                                direction: Axis
+                                    .horizontal, // arrange children horizontally
                                 children: [
                                   Expanded(
-                                    flex: 1,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileNGOPage(name: "SEEDS")));
-                                        }
-                                      },
-                                      child: Text(
-                                        "Contact us",
-                                        style: TextStyle(
-                                          color: Color(0xff000000),
-                                          fontSize: 12,
-                                        ),
+                                    flex:
+                                        1, // take up 2/3 of the available space
+                                    child: Container(
+                                      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                      alignment: AlignmentDirectional.topCenter,
+                                      child: Image.asset(
+                                        'assets/images/ngo.png',
                                       ),
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 1,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    AuthPage_donate(
-                                                      name: "SEEDS",
-                                                      role: widget.role,
-                                                    )));
-                                      },
-                                      child: Container(
-                                        height: 27,
-                                        width: 105,
-                                        padding: EdgeInsets.all(
-                                          MediaQuery.of(context).size.width *
-                                              0.02,
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: Color(0xff32637F),
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(15),
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black87,
-                                                offset: Offset(3, 3),
-                                                blurRadius: 3,
-                                              )
-                                            ]),
-                                        child: Center(
-                                          child: Text('Donate',
-                                              style: GoogleFonts.notoSans(
-                                                  color: Color(0xFFFFFFFF),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500)),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: 330,
-                // top: 20,
-                // height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xFFF0F4F5),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: SizedBox(
-                    height: 130,
-                    child: Flex(
-                      direction:
-                          Axis.horizontal, // arrange children horizontally
-                      children: [
-                        Expanded(
-                          flex: 1, // take up 2/3 of the available space
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                            alignment: AlignmentDirectional.topCenter,
-                            child: Image.asset(
-                              'assets/images/ngo.png',
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4, // take up 1/3 of the available space
-                          child: Column(
-                            children: [
-                              SizedBox(height: 11),
-                              Text(
-                                'Pratham                                                ',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.notoSans(
-                                  color: Color(0xFFDB473E),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              Text(
-                                'Quality education for underprivileged children in India and providing them with necessary knowledge and support.',
-                                style: GoogleFonts.notoSans(
-                                    color: Color(0xFF000000),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500),
-                              ),
-
-                              // SizedBox(height: 12),
-
-                              // SizedBox(height: 20),
-                              new Expanded(
-                                  child: Flex(
-                                direction: Axis.horizontal,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ProfileNGO(
-                                                        name: 'Pratham')));
-                                      },
-                                      child: Text(
-                                        "Contact us",
-                                        style: TextStyle(
-                                          color: Color(0xff000000),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    AuthPage_donate(
-                                                      name: "Pratham",
-                                                      role: widget.role,
-                                                    )));
-                                      },
-                                      child: Container(
-                                        height: 27,
-                                        width: 105,
-                                        padding: EdgeInsets.all(
-                                          MediaQuery.of(context).size.width *
-                                              0.02,
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: Color(0xff32637F),
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(15),
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black87,
-                                                offset: Offset(3, 3),
-                                                blurRadius: 3,
-                                              )
-                                            ]),
-                                        child: Center(
-                                          child: Text('Donate',
-                                              style: GoogleFonts.notoSans(
-                                                  color: Color(0xFFFFFFFF),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500)),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: 330,
-                // top: 20,
-                // height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xFFF0F4F5),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: SizedBox(
-                    height: 130,
-                    child: Flex(
-                      direction:
-                          Axis.horizontal, // arrange children horizontally
-                      children: [
-                        Expanded(
-                          flex: 1, // take up 2/3 of the available space
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                            alignment: AlignmentDirectional.topCenter,
-                            child: Image.asset(
-                              'assets/images/ngo.png',
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4, // take up 1/3 of the available space
-                          child: Column(
-                            children: [
-                              SizedBox(height: 11),
-                              Text(
-                                'Care India                                                ',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.notoSans(
-                                  color: Color(0xFFDB473E),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              Text(
-                                'Empower women and girls from poor and marginalised communities',
-                                style: GoogleFonts.notoSans(
-                                    color: Color(0xFF000000),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500),
-                              ),
-
-                              // SizedBox(height: 12),
-
-                              // SizedBox(height: 20),
-
-                              new Expanded(
-                                  child: Flex(
-                                direction: Axis.horizontal,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileNGOPage(name:"Care India")));
-                                        }
-                                        
-                                      },
-                                      child: TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfileNGO(
-                                                        name: "Care India",
-                                                      )));
-                                        },
-                                        child: Text(
-                                          "Contact us",
-                                          style: TextStyle(
-                                            color: Color(0xff000000),
-                                            fontSize: 12,
+                                    flex:
+                                        4, // take up 1/3 of the available space
+                                    child: Column(
+                                      children: [
+                                        SizedBox(height: 11),
+                                        Text(
+                                          '${name_campaign[index]},                                             ',
+                                          textAlign: TextAlign.left,
+                                          style: GoogleFonts.notoSans(
+                                            color: Color(0xFFDB473E),
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w900,
                                           ),
                                         ),
-                                      ),
+                                        Text(
+                                          '${name_of_ngo[index]}',
+                                          style: GoogleFonts.notoSans(
+                                              color: Color(0xFF000000),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          '${motto[index]}',
+                                          style: GoogleFonts.notoSans(
+                                              color: Color(0xFF000000),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+
+                                        // SizedBox(height: 12),
+
+                                        // SizedBox(height: 20),
+
+                                        new Expanded(
+                                            child: Flex(
+                                          direction: Axis.horizontal,
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  {
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                ProfileNGOPage(
+                                                                    name:
+                                                                        '${name_of_ngo[index]}')));
+                                                  }
+                                                },
+                                                child: TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    ProfileNGO(
+                                                                      name:
+                                                                          '${name_of_ngo[index]}',
+                                                                    )));
+                                                  },
+                                                  child: Text(
+                                                    "Contact us",
+                                                    style: TextStyle(
+                                                      color: Color(0xff000000),
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              AuthPage_donate(
+                                                                name_of_ngo:
+                                                                    '${name_of_ngo[index]}',
+                                                                name_of_corporation:
+                                                                    widget.name,
+                                                                role:
+                                                                    widget.role,
+                                                              )));
+                                                },
+                                                child: Container(
+                                                  height: 27,
+                                                  width: 105,
+                                                  padding: EdgeInsets.all(
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.02,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0xff32637F),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(15),
+                                                      ),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.black87,
+                                                          offset: Offset(3, 3),
+                                                          blurRadius: 3,
+                                                        )
+                                                      ]),
+                                                  child: Center(
+                                                    child: Text('Donate',
+                                                        style: GoogleFonts
+                                                            .notoSans(
+                                                                color: Color(
+                                                                    0xFFFFFFFF),
+                                                                fontSize: 10,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500)),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        )),
+                                      ],
                                     ),
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    AuthPage_donate(
-                                                      name: "Care India",
-                                                      role: widget.role,
-                                                    )));
-                                      },
-                                      child: Container(
-                                        height: 27,
-                                        width: 105,
-                                        padding: EdgeInsets.all(
-                                          MediaQuery.of(context).size.width *
-                                              0.02,
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: Color(0xff32637F),
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(15),
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black87,
-                                                offset: Offset(3, 3),
-                                                blurRadius: 3,
-                                              )
-                                            ]),
-                                        child: Center(
-                                          child: Text('Donate',
-                                              style: GoogleFonts.notoSans(
-                                                  color: Color(0xFFFFFFFF),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w500)),
-                                        ),
-                                      ),
-                                    ),
-                                  )
                                 ],
-                              )),
-                            ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+                        );
+                      })),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Container(
+              //   width: 330,
+              //   // top: 20,
+              //   // height: 100,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(10),
+              //     color: Color(0xFFF0F4F5),
+              //   ),
+              //   child: ClipRRect(
+              //     borderRadius: BorderRadius.circular(20),
+              //     child: SizedBox(
+              //       height: 130,
+              //       child: Flex(
+              //         direction:
+              //             Axis.horizontal, // arrange children horizontally
+              //         children: [
+              //           Expanded(
+              //             flex: 1, // take up 2/3 of the available space
+              //             child: Container(
+              //               padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              //               alignment: AlignmentDirectional.topCenter,
+              //               child: Image.asset(
+              //                 'assets/images/ngo.png',
+              //               ),
+              //             ),
+              //           ),
+              //           Expanded(
+              //             flex: 4, // take up 1/3 of the available space
+              //             child: Column(
+              //               children: [
+              //                 SizedBox(height: 11),
+              //                 Text(
+              //                   'Care India                                                ',
+              //                   textAlign: TextAlign.left,
+              //                   style: GoogleFonts.notoSans(
+              //                     color: Color(0xFFDB473E),
+              //                     fontSize: 17,
+              //                     fontWeight: FontWeight.w900,
+              //                   ),
+              //                 ),
+              //                 Text(
+              //                   'Empower women and girls from poor and marginalised communities',
+              //                   style: GoogleFonts.notoSans(
+              //                       color: Color(0xFF000000),
+              //                       fontSize: 12,
+              //                       fontWeight: FontWeight.w500),
+              //                 ),
+
+              //                 // SizedBox(height: 12),
+
+              //                 // SizedBox(height: 20),
+
+              //                 new Expanded(
+              //                     child: Flex(
+              //                   direction: Axis.horizontal,
+              //                   children: [
+              //                     Expanded(
+              //                       flex: 1,
+              //                       child: TextButton(
+              //                         onPressed: () {
+              //                           {
+              //                             Navigator.of(context).push(
+              //                                 MaterialPageRoute(
+              //                                     builder: (context) =>
+              //                                         ProfileNGOPage(
+              //                                             name: "Care India")));
+              //                           }
+              //                         },
+              //                         child: TextButton(
+              //                           onPressed: () {
+              //                             Navigator.of(context).push(
+              //                                 MaterialPageRoute(
+              //                                     builder: (context) =>
+              //                                         ProfileNGO(
+              //                                           name: "Care India",
+              //                                         )));
+              //                           },
+              //                           child: Text(
+              //                             "Contact us",
+              //                             style: TextStyle(
+              //                               color: Color(0xff000000),
+              //                               fontSize: 12,
+              //                             ),
+              //                           ),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                     Expanded(
+              //                       flex: 1,
+              //                       child: TextButton(
+              //                         onPressed: () {
+              //                           Navigator.of(context).push(
+              //                               MaterialPageRoute(
+              //                                   builder: (context) =>
+              //                                       AuthPage_donate(
+              //                                         name_of_ngo: "Care India",
+              //                                         name_of_corporation:
+              //                                             widget.name,
+              //                                         role: widget.role,
+              //                                       )));
+              //                         },
+              //                         child: Container(
+              //                           height: 27,
+              //                           width: 105,
+              //                           padding: EdgeInsets.all(
+              //                             MediaQuery.of(context).size.width *
+              //                                 0.02,
+              //                           ),
+              //                           decoration: BoxDecoration(
+              //                               color: Color(0xff32637F),
+              //                               borderRadius: BorderRadius.all(
+              //                                 Radius.circular(15),
+              //                               ),
+              //                               boxShadow: [
+              //                                 BoxShadow(
+              //                                   color: Colors.black87,
+              //                                   offset: Offset(3, 3),
+              //                                   blurRadius: 3,
+              //                                 )
+              //                               ]),
+              //                           child: Center(
+              //                             child: Text('Donate',
+              //                                 style: GoogleFonts.notoSans(
+              //                                     color: Color(0xFFFFFFFF),
+              //                                     fontSize: 10,
+              //                                     fontWeight: FontWeight.w500)),
+              //                           ),
+              //                         ),
+              //                       ),
+              //                     )
+              //                   ],
+              //                 )),
+              //               ],
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 10,
               ),
