@@ -188,7 +188,7 @@ class _AuthPageState extends State<AuthPage_donate> {
                       ),
 
                       SizedBox(
-                        height: 330,
+                        height: 300,
                       ),
                       IconButton(
                         color: Colors.black,

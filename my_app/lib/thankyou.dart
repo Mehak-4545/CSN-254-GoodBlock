@@ -216,7 +216,7 @@ class _AuthPage_thankyouState extends State<AuthPage_thankyou> {
                         ),
                       ),
                       SizedBox(
-                        height: 285,
+                        height: 255,
                       ),
                       IconButton(
                         color: Colors.black,

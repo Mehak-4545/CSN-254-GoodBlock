@@ -237,7 +237,7 @@ class _AuthPageState extends State<AuthPage_corp> {
                               color: Color(0xff32637F),
                             ),
                             icon: Icon(
-                              Icons.house_outlined,
+                              Icons.key,
                               color: Color(0xff32637F),
                             ),
                           ),
