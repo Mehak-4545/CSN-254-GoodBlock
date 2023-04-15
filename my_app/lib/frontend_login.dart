@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/home_ngo.dart';
 import 'package:my_app/main.dart';
+import 'package:my_app/web3/interactor.dart';
 import './frontend_signup_individual.dart';
 import 'home.dart';
 import 'profile_page_individual.dart';
 import 'profile_page_corporation.dart';
 import 'profile_page_ngo.dart';
-import 'main.dart';
-import 'main2.dart';
-// import 'main.dart3';
-// import 'package:flutter/widgets.dart';
 
 class AuthPage extends StatefulWidget {
   final String role;
@@ -178,22 +175,31 @@ class _AuthPageState extends State<AuthPage> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       GestureDetector(
-                        // onTap: () {},
-                        onTap: () {
-                          if (widget.role == "NGO") {
-                            {
+                        onTap: () async {
+                          var result = await callContractFunction(
+                              widget.role.toLowerCase(),
+                              "_login",
+                              [input_name, input_password],
+                              "_login_event");
+                          if (result[-1] == "successful login") {
+                            if (widget.role == "NGO") {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeAppPage(
-                                      role: widget.role,
-                                      name: input_name,
+                                  builder: (context) => HomeAppPage(
+                                        role: widget.role,
+                                        name: input_name,
+                                      )));
+                            } else {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeOtherAppPage(
+                                        role: widget.role,
+                                        name: input_name,
                                       )));
                             }
                           } else {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeOtherAppPage(
-                                      role: widget.role,
-                                      name: input_name,
-                                    )));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text("Unsuccessful login, try again")));
                           }
                         },
                         child: Container(

@@ -299,13 +299,17 @@ class _AuthPageState extends State<AuthPage_indi> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          await callContractFunction("individual", "_signup", [
-                            input_name,
-                            input_email,
-                            input_password,
-                            input_contact_number,
-                            input_address
-                          ]);
+                          await callContractFunction(
+                              "individual",
+                              "_signup",
+                              [
+                                input_name,
+                                input_email,
+                                input_password,
+                                input_contact_number,
+                                input_address
+                              ],
+                              "_signup_event");
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) =>

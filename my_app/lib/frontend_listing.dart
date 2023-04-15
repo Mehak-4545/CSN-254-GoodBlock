@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/profile_page_corporation.dart';
 import 'package:my_app/profile_page_ngo.dart';
+import 'package:my_app/web3/interactor.dart';
 import './frontend_signup_individual.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './home.dart';
@@ -36,12 +37,18 @@ class _AuthPage_listState extends State<AuthPage_list> {
   var mo = <String>[];
 
   @override
-  void initState() {
-    ngo = name_of_ngo;
-    camp = name_campaign;
-    mo = motto;
+  void initState() async {
+    List<List<String>> result = await callContractFunction(
+        "ngo", "getAllCampaigns", [], "getAllCampaigns_event");
+    List<String> campaigns = result[0];
+    for (var campaign in campaigns) {
+      ngo.add(campaign[0][-1]);
+      camp.add(campaign[0][0]);
+      mo.add(campaign[0][1]);
+    }
     super.initState();
   }
+
   void filterSearchResults(String name, String ngo_name, String goal) {
     setState(() {
       ngo = name_of_ngo
@@ -160,7 +167,6 @@ class _AuthPage_listState extends State<AuthPage_list> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: TextField(
-                
                           textAlignVertical: TextAlignVertical.center,
                           onChanged: (value) {
                             filterSearchResults(value, "CareIndia",
