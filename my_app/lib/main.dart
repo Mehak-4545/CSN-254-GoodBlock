@@ -16,7 +16,10 @@ class TestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: AuthPage_list(role: "Ngo", name: "hlt",),
+      home: AuthPage_list(
+        role: "NGO",
+        name: "hlt",
+      ),
     );
   }
 }

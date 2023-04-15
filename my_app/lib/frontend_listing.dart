@@ -42,6 +42,20 @@ class _AuthPage_listState extends State<AuthPage_list> {
     mo = motto;
     super.initState();
   }
+  void filterSearchResults(String name, String ngo_name, String goal) {
+    setState(() {
+      ngo = name_of_ngo
+          .where((item) => item.toLowerCase().contains(name.toLowerCase()))
+          .toList();
+      ngo = name_of_ngo;
+      camp = name_campaign
+          .where((item) => item.toLowerCase().contains(ngo_name.toLowerCase()))
+          .toList();
+      mo = motto
+          .where((item) => item.toLowerCase().contains(goal.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,9 +159,14 @@ class _AuthPage_listState extends State<AuthPage_list> {
                       // onTap: tmpFunction2,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: TextFormField(
+                        child: TextField(
+                
                           textAlignVertical: TextAlignVertical.center,
-                          onEditingComplete: () => tmpFunction3(),
+                          onChanged: (value) {
+                            filterSearchResults(value, "CareIndia",
+                                "Empower women and girls from poor and marginalised communities");
+                          },
+                          // onEditingComplete: () => tmpFunction3(),
                           decoration: InputDecoration(
                             hintText: '  Search For NGOs',
                             hintStyle: TextStyle(

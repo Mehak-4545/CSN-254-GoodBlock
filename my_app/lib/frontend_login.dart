@@ -181,11 +181,13 @@ class _AuthPageState extends State<AuthPage> {
                         // onTap: () {},
                         onTap: () {
                           if (widget.role == "NGO") {
-                            Navigator.of(context).push(MaterialPageRoute(
+                            {
+                              Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => HomeAppPage(
                                       role: widget.role,
                                       name: input_name,
-                                    )));
+                                      )));
+                            }
                           } else {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => HomeOtherAppPage(

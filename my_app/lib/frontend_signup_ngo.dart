@@ -302,7 +302,11 @@ class _AuthPageState extends State<AuthPage_ngo> {
                       GestureDetector(
                         onTap: () async {
                           await callContractFunction("ngo", "_signup", [
-                            // the five fields
+                            input_name,
+                            input_email,
+                            input_password,
+                            input_contact_number,
+                            input_address
                           ]);
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
