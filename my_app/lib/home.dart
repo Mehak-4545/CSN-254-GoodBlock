@@ -7,6 +7,8 @@ import 'profile_page_corporation.dart';
 import 'main.dart';
 import 'main2.dart';
 import 'dummy.dart';
+import 'about_us.dart';
+import 'history.dart';
 // import 'main3.dart';
 import 'frontend_listing.dart';
 // import 'main.dart';
@@ -157,11 +159,11 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                             onTap: () {
                               if (widget.role == "Corporation") {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
+                                    builder: (context) => AuthPage_history()));
                               }
                               if (widget.role == "Individual") {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
+                                    builder: (context) => AuthPage_history()));
                               }
                             },
                             child: ClipRRect(
@@ -187,11 +189,11 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                             onTap: () {
                               if (widget.role == "Corporation") {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
+                                    builder: (context) => AuthPage_aboutus()));
                               }
                               if (widget.role == "Individual") {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AuthPage_dummy()));
+                                    builder: (context) => AuthPage_aboutus()));
                               }
                             },
                             child: ClipRRect(
