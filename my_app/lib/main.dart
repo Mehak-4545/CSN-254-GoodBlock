@@ -7,22 +7,22 @@ import './frontend_signup_individual.dart';
 // import 'main.dart';
 
 void main() {
-  runApp(const TestWidget());
+  runApp(const Launch());
 }
 
-class TestWidget extends StatelessWidget {
-  const TestWidget({super.key});
+// class TestWidget extends StatelessWidget {
+//   const TestWidget({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: AuthPage_list(
-        role: "NGO",
-        name: "hlt",
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       home: AuthPage_list(
+//         role: "NGO",
+//         name: "hlt",
+//       ),
+//     );
+//   }
+// }
 
 void tmpFunction1() {
   print('Funt ngo');

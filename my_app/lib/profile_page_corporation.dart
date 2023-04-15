@@ -33,8 +33,13 @@ void tmpFunction3() {
 // }
 
 class ProfileCorporationPage extends StatefulWidget {
-  final String name;
-  const ProfileCorporationPage({super.key, required this.name});
+  final String name, email, address, contact;
+  const ProfileCorporationPage(
+      {super.key,
+      required this.name,
+      required this.address,
+      required this.contact,
+      required this.email});
 
   @override
   State<ProfileCorporationPage> createState() => _ProfileCorporationPageState();
@@ -94,7 +99,7 @@ class _ProfileCorporationPageState extends State<ProfileCorporationPage> {
                         // ),
 
                         Text(
-                          'Organization',
+                          'Organization: ' + widget.name,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -106,7 +111,7 @@ class _ProfileCorporationPageState extends State<ProfileCorporationPage> {
                           height: 20,
                         ), //iski wajah se space dhang se ho rahi hai
                         Text(
-                          'Email',
+                          'Email: ' + widget.email,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -118,7 +123,7 @@ class _ProfileCorporationPageState extends State<ProfileCorporationPage> {
                           height: 20,
                         ),
                         Text(
-                          'Address',
+                          'Address: ' + widget.address,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -130,7 +135,7 @@ class _ProfileCorporationPageState extends State<ProfileCorporationPage> {
                           height: 20,
                         ),
                         Text(
-                          'Contact number',
+                          'Contact number: ' + widget.contact,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(

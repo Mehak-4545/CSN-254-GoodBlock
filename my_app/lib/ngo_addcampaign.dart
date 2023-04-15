@@ -10,9 +10,15 @@ import 'profile_page_ngo.dart';
 // import 'package:flutter/widgets.dart';
 
 class AuthPage_addcampaign extends StatefulWidget {
-  final String name;
+  final String name, email, contact, address;
 
-  const AuthPage_addcampaign({Key? key, required this.name}) : super(key: key);
+  const AuthPage_addcampaign(
+      {Key? key,
+      required this.name,
+      required this.contact,
+      required this.address,
+      required this.email})
+      : super(key: key);
   @override
   _AuthPage_addcampaignState createState() => _AuthPage_addcampaignState();
 }
@@ -228,6 +234,9 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                               builder: (context) => AuthPage_list(
                                     role: "NGO",
                                     name: widget.name,
+                                    address: widget.address,
+                                    email: widget.email,
+                                    contact: widget.contact,
                                   )));
                         },
                       ),

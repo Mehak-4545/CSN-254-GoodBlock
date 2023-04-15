@@ -15,26 +15,29 @@ void tmpFunction3() {
 }
 
 class AuthPage_list extends StatefulWidget {
-  final String role;
-  final String name;
+  final String role, name, email, contact, address;
 
-  const AuthPage_list({Key? key, required this.role, required this.name})
+  const AuthPage_list(
+      {Key? key,
+      required this.role,
+      required this.name,
+      required this.address,
+      required this.contact,
+      required this.email})
       : super(key: key);
   @override
   _AuthPage_listState createState() => _AuthPage_listState();
 }
 
 class _AuthPage_listState extends State<AuthPage_list> {
-  final List<String> name_of_ngo = <String>['SEEDS', 'Pratham', 'Care India'];
-  final List<String> name_campaign = <String>['moto1', 'moto2', 'moto3'];
-  final List<String> motto = <String>[
-    'Disaster preparedness, disaster response and rehabilitating homes and community infrastructure',
-    'Quality education for underprivileged children in India and providing them with necessary knowledge and support.',
-    'Empower women and girls from poor and marginalised communities',
-  ];
-  var ngo = <String>[];
-  var camp = <String>[];
-  var mo = <String>[];
+  var name_of_ngo = <String>[];
+  var name_campaign = <String>[];
+  var motto = <String>[];
+  var email = <String>[];
+  var contact = <String>[];
+  var address = <String>[];
+
+  List<String> ngo = [], camp = [], mo = [];
 
   @override
   void initState() async {
@@ -42,8 +45,14 @@ class _AuthPage_listState extends State<AuthPage_list> {
         "ngo", "getAllCampaigns", [], "getAllCampaigns_event");
     List<String> campaigns = result[0];
     for (var campaign in campaigns) {
-      ngo.add(campaign[0][-1]);
+      name_of_ngo.add(campaign[0][4]);
+      ngo.add(campaign[0][4]);
+      email.add(campaign[0][5]);
+      contact.add(campaign[0][6]);
+      address.add(campaign[0][7]);
+      name_campaign.add(campaign[0][0]);
       camp.add(campaign[0][0]);
+      motto.add(campaign[0][1]);
       mo.add(campaign[0][1]);
     }
     super.initState();
@@ -108,6 +117,9 @@ class _AuthPage_listState extends State<AuthPage_list> {
                   builder: (context) => HomeOtherAppPage(
                         role: widget.role,
                         name: widget.name,
+                        contact: widget.contact,
+                        address: widget.address,
+                        email: widget.email,
                       )));
             }
             if (index == 1) {
@@ -115,17 +127,27 @@ class _AuthPage_listState extends State<AuthPage_list> {
                   builder: (context) => HomeOtherAppPage(
                         role: widget.role,
                         name: widget.name,
+                        contact: widget.contact,
+                        address: widget.address,
+                        email: widget.email,
                       )));
             }
             if (index == 2 && widget.role == "Individual") {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      ProfileIndividualPage(name: widget.name)));
+                  builder: (context) => ProfileIndividualPage(
+                        name: widget.name,
+                        email: widget.email,
+                        address: widget.address,
+                        contact: widget.contact,
+                      )));
             }
             if (index == 2 && widget.role == "Corporation") {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProfileCorporationPage(
                         name: widget.name,
+                        contact: widget.contact,
+                        address: widget.address,
+                        email: widget.email,
                       )));
             }
             // if (widget.role == "Individual") {
@@ -266,8 +288,17 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                                         MaterialPageRoute(
                                                             builder: (context) =>
                                                                 ProfileNGOPage(
-                                                                    name:
-                                                                        '${name_of_ngo[index]}')));
+                                                                  name:
+                                                                      '${name_of_ngo[index]}',
+                                                                  contact:
+                                                                      contact[
+                                                                          index],
+                                                                  email: email[
+                                                                      index],
+                                                                  address:
+                                                                      address[
+                                                                          index],
+                                                                )));
                                                   }
                                                 },
                                                 child: TextButton(
@@ -279,6 +310,14 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                                                     ProfileNGO(
                                                                       name:
                                                                           '${name_of_ngo[index]}',
+                                                                      contact:
+                                                                          contact[
+                                                                              index],
+                                                                      email: email[
+                                                                          index],
+                                                                      address:
+                                                                          address[
+                                                                              index],
                                                                     )));
                                                   },
                                                   child: Text(
@@ -305,6 +344,15 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                                                     widget.name,
                                                                 role:
                                                                     widget.role,
+                                                                self_address:
+                                                                    widget
+                                                                        .address,
+                                                                self_contact:
+                                                                    widget
+                                                                        .contact,
+                                                                self_email:
+                                                                    widget
+                                                                        .email,
                                                               )));
                                                 },
                                                 child: Container(

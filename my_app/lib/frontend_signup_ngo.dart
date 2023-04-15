@@ -314,8 +314,8 @@ class _AuthPageState extends State<AuthPage_ngo> {
                               "_signup_event");
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (context) => HomeAppPage(
-                                      role: "corporation", name: "name")),
+                                  builder: (context) =>
+                                      const AuthPage(role: "NGO")),
                               (route) => false);
                         },
                         child: Container(

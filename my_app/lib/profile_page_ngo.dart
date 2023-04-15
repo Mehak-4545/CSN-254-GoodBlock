@@ -18,8 +18,13 @@ void tmpFunction3() {
 }
 
 class ProfileNGO extends StatelessWidget {
-  final String name;
-  const ProfileNGO({super.key, required this.name});
+  final String name, contact, address, email;
+  const ProfileNGO(
+      {super.key,
+      required this.name,
+      required this.contact,
+      required this.address,
+      required this.email});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -28,14 +33,24 @@ class ProfileNGO extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ProfileNGOPage(name: name),
+      home: ProfileNGOPage(
+        name: name,
+        contact: contact,
+        address: address,
+        email: email,
+      ),
     );
   }
 }
 
 class ProfileNGOPage extends StatefulWidget {
-  final String name;
-  const ProfileNGOPage({super.key, required this.name});
+  final String name, contact, address, email;
+  const ProfileNGOPage(
+      {super.key,
+      required this.name,
+      required this.contact,
+      required this.address,
+      required this.email});
 
   @override
   State<ProfileNGOPage> createState() => _ProfileNGOPageState();
@@ -98,7 +113,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
                           height: 40,
                         ),
                         Text(
-                          'Organization: '+widget.name,
+                          'Organization: ' + widget.name,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -110,7 +125,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
                           height: 20,
                         ), //iski wajah se space dhang se ho rahi hai
                         Text(
-                          'Email',
+                          'Email: ' + widget.email,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -122,7 +137,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
                           height: 20,
                         ),
                         Text(
-                          'Address',
+                          'Address: ' + widget.address,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -134,7 +149,7 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
                           height: 20,
                         ),
                         Text(
-                          'Contact number',
+                          'Contact number: ' + widget.contact,
                           textAlign: TextAlign.left,
                           // style: TextStyle(color: Color(637176)),
                           style: GoogleFonts.notoSans(
@@ -144,15 +159,6 @@ class _ProfileNGOPageState extends State<ProfileNGOPage> {
                         ),
                         SizedBox(
                           height: 20,
-                        ),
-                        Text(
-                          'Wallet',
-                          textAlign: TextAlign.left,
-                          // style: TextStyle(color: Color(637176)),
-                          style: GoogleFonts.notoSans(
-                              color: Color.fromARGB(98, 42, 43, 62),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w900),
                         ),
                         SizedBox(
                           height: 20,

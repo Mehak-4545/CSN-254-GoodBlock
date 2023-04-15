@@ -15,13 +15,21 @@ void tmpFunction2() {
 }
 
 class AuthPage_donate extends StatefulWidget {
-  final String name_of_ngo, name_of_corporation, role; //name of NGO
+  final String name_of_ngo,
+      name_of_corporation,
+      role,
+      self_email,
+      self_contact,
+      self_address; //name of NGO
 
   const AuthPage_donate(
       {Key? key,
       required this.name_of_ngo,
       required this.name_of_corporation,
-      required this.role})
+      required this.role,
+      required this.self_address,
+      required this.self_contact,
+      required this.self_email})
       : super(key: key);
   @override
   _AuthPageState createState() => _AuthPageState();
@@ -144,6 +152,9 @@ class _AuthPageState extends State<AuthPage_donate> {
                                     name_of_corporation:
                                         widget.name_of_corporation,
                                     role: widget.role,
+                                    self_email: widget.self_email,
+                                    self_address: widget.self_address,
+                                    self_contact: widget.self_contact,
                                   )));
                         },
                         child: Container(
@@ -190,6 +201,9 @@ class _AuthPageState extends State<AuthPage_donate> {
                               builder: (context) => AuthPage_list(
                                     role: widget.role,
                                     name: widget.name_of_ngo,
+                                    email: widget.self_email,
+                                    contact: widget.self_contact,
+                                    address: widget.self_address,
                                   )));
                         },
                       ),

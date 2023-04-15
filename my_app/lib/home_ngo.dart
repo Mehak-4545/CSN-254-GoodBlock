@@ -45,9 +45,15 @@ void tmpFunction3() {
 // }
 
 class HomeAppPage extends StatefulWidget {
-  final String role, name;
+  final String role, name, contact, email, address;
 
-  const HomeAppPage({Key? key, required this.role, required this.name})
+  const HomeAppPage(
+      {Key? key,
+      required this.role,
+      required this.name,
+      required this.contact,
+      required this.address,
+      required this.email})
       : super(key: key);
 
   @override
@@ -126,7 +132,11 @@ class _HomeAppPageState extends State<HomeAppPage> {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => (AuthPage_addcampaign(
-                                      name: widget.name))));
+                                        name: widget.name,
+                                        contact: widget.contact,
+                                        address: widget.address,
+                                        email: widget.email,
+                                      ))));
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -215,7 +225,12 @@ class _HomeAppPageState extends State<HomeAppPage> {
           }
           if (index == 1) {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ProfileNGO(name: widget.name)));
+                builder: (context) => ProfileNGO(
+                      name: widget.name,
+                      contact: widget.contact,
+                      email: widget.email,
+                      address: widget.address,
+                    )));
           }
           // if (widget.role == "Individual") {
           //   Navigator.of(context).push(MaterialPageRoute(

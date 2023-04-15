@@ -53,9 +53,16 @@ void tmpFunction3() {
 // }
 
 class HomeOtherAppPage extends StatefulWidget {
-  final String role, name;
+  final String role, name, email, address, contact;
 
-  const HomeOtherAppPage({Key? key, required this.role, required this.name}) : super(key: key);
+  const HomeOtherAppPage(
+      {Key? key,
+      required this.role,
+      required this.name,
+      required this.address,
+      required this.contact,
+      required this.email})
+      : super(key: key);
 
   @override
   State<HomeOtherAppPage> createState() => _HomeOtherAppPageState();
@@ -132,10 +139,14 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      AuthPage_list(role: widget.role, name: widget.name,)));
+                                  builder: (context) => AuthPage_list(
+                                        role: widget.role,
+                                        name: widget.name,
+                                        contact: widget.contact,
+                                        address: widget.address,
+                                        email: widget.email,
+                                      )));
                             },
-                            // onTap: tmpFunction1,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
@@ -234,12 +245,22 @@ class _HomeOtherAppPageState extends State<HomeOtherAppPage> {
                 builder: (context) => AuthPage(role: widget.role)));
           }
           if (index == 1 && widget.role == "Corporation") {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileCorporationPage(name: widget.name,)));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ProfileCorporationPage(
+                      name: widget.name,
+                      contact: widget.contact,
+                      email: widget.email,
+                      address: widget.address,
+                    )));
           }
           if (index == 1 && widget.role == "Individual") {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileIndividualPage(name: widget.name,)));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ProfileIndividualPage(
+                      name: widget.name,
+                      contact: widget.contact,
+                      address: widget.address,
+                      email: widget.email,
+                    )));
           }
 
           // if (widget.role == "Individual") {

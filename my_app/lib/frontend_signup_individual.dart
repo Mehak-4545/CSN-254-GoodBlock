@@ -313,7 +313,7 @@ class _AuthPageState extends State<AuthPage_indi> {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const AuthPage(role: "individual")),
+                                      const AuthPage(role: "Individual")),
                               (route) => false);
                         },
                         child: Container(

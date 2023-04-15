@@ -187,12 +187,18 @@ class _AuthPageState extends State<AuthPage> {
                                   builder: (context) => HomeAppPage(
                                         role: widget.role,
                                         name: input_name,
+                                        address: result[4],
+                                        contact: result[2],
+                                        email: result[3],
                                       )));
                             } else {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => HomeOtherAppPage(
                                         role: widget.role,
                                         name: input_name,
+                                        address: result[4],
+                                        contact: result[2],
+                                        email: result[3],
                                       )));
                             }
                           } else {
