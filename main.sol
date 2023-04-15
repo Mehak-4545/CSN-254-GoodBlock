@@ -146,9 +146,9 @@ contract Individual{
 
     uint max_users= 50;
 
-    event _createInd_event(individual);
+    // event _createInd_event(individual);
     event _login_event(bool successful_login, string name, string contact, string email, string Address);
-    event _signup_event(bool success);
+    event _signup_event(individual);
 
     individual[] public Individuals;
 
@@ -156,22 +156,27 @@ contract Individual{
     mapping(address => string) Password;//map to store password string corresponding to user address
     mapping(string => address) User_Ids;//map to reference addresses using userid
 
-    function _createInd(string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) internal {
+    // function _createInd(string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) internal {
+    //     individual memory new_Individual = individual( _name,  _email, _password, _contact, _Address);
+    //     // Individuals.push(new_Individual);
+    //     // ind_Users[msg.sender]=new_Individual;
+    //     // Password[msg.sender]=_password;
+    //     // User_Ids[_name]=msg.sender;
+    //     emit _createInd_event(new_Individual);
+    //     Individuals.push(new_Individual);
+    //     ind_Users[msg.sender]=new_Individual;
+    //     Password[msg.sender]=_password;
+    //     User_Ids[_name]=msg.sender;
+    // }
+
+    function _signup (string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) public{
         individual memory new_Individual = individual( _name,  _email, _password, _contact, _Address);
-        // Individuals.push(new_Individual);
-        // ind_Users[msg.sender]=new_Individual;
-        // Password[msg.sender]=_password;
-        // User_Ids[_name]=msg.sender;
-        emit _createInd_event(new_Individual);
+        // _createInd(_name,  _email, _password, _contact , _Address);
+        emit _signup_event(new_Individual);
         Individuals.push(new_Individual);
         ind_Users[msg.sender]=new_Individual;
         Password[msg.sender]=_password;
         User_Ids[_name]=msg.sender;
-    }
-
-    function _signup (string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) public{
-        _createInd(_name,  _email, _password, _contact , _Address);
-        emit _signup_event(true);
     }
 
     function _login (string calldata _userName, string calldata _password) public{
@@ -195,9 +200,9 @@ contract Corporation{
 
     uint max_users=50;
 
-    event _createCorp_event(corporation, string);
+    // event _createCorp_event(corporation, string);
     event _login_event(bool successful_login, string name, string contact, string email, string Address);
-    event _signup_event(bool success);
+    event _signup_event(corporation, string);
 
     corporation[] public Corporations;
 
@@ -205,24 +210,30 @@ contract Corporation{
     mapping(address => string) Password;//map to store password string corresponding to user address
     mapping(string => address) User_Ids;//map to reference addresses using userid
 
-    function _createCorp(string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) public {
-        corporation memory new_Corporation = corporation( _name,  _email, _password, _contact, _Address);
+    // function _createCorp(string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) public {
+    //     corporation memory new_Corporation = corporation( _name,  _email, _password, _contact, _Address);
+    // //     Corporations.push(new_Corporation);
+    // //     corp_Users[msg.sender]=new_Corporation;
+    // //     Password[msg.sender]=_password;
+    // //   //  uint id = uint(keccak256(abi.encodePacked(_name)))%max_users;
+    // //     User_Ids[_name]=msg.sender;
+    //     emit _createCorp_event(new_Corporation,_name);
     //     Corporations.push(new_Corporation);
     //     corp_Users[msg.sender]=new_Corporation;
     //     Password[msg.sender]=_password;
     //   //  uint id = uint(keccak256(abi.encodePacked(_name)))%max_users;
     //     User_Ids[_name]=msg.sender;
-        emit _createCorp_event(new_Corporation,_name);
+    // }
+
+    function _signup (string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) public{
+        corporation memory new_Corporation = corporation( _name,  _email, _password, _contact, _Address);
+        // _createCorp(_name,  _email, _password, _contact , _Address);
+        emit _signup_event(new_Corporation,_name);
         Corporations.push(new_Corporation);
         corp_Users[msg.sender]=new_Corporation;
         Password[msg.sender]=_password;
       //  uint id = uint(keccak256(abi.encodePacked(_name)))%max_users;
         User_Ids[_name]=msg.sender;
-    }
-
-    function _signup (string calldata _name, string calldata _email,string calldata _password,string calldata _contact,string calldata _Address) public{
-        _createCorp(_name,  _email, _password, _contact , _Address);
-        emit _signup_event(true);
     }
 
     function _login (string calldata _userName, string calldata  _password) public{
