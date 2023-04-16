@@ -181,7 +181,7 @@ class _AuthPageState extends State<AuthPage> {
                               "_login",
                               [input_name, input_password],
                               "_login_event");
-                          if (result[-1] == "successful login") {
+                          if (result[5] == "successful login") {
                             if (widget.role == "NGO") {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => HomeAppPage(

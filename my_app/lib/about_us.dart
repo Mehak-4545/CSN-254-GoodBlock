@@ -84,12 +84,17 @@ class _AuthPage_aboutusState extends State<AuthPage_aboutus> {
 
 
                       Text(
-                        'GoodBlock is bleh bleh',
+                        'Building a new world, one block at a time!',
                         style:
                             TextStyle(fontSize: 20, color: Color(0xff0d557e)),
                         
                       ),
-
+                      Text(
+                        'GoodBlock is an application that connects various NGOs accross the world to  Corporations and Individuals who wish to donate for a cause,  ',
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff0d557e)),
+                        
+                      ),
                       
                       
                       

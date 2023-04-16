@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/frontend_listing.dart';
 import 'package:my_app/frontend_signup_corp.dart';
+import 'package:my_app/web3/interactor.dart';
 import './frontend_signup_ngo.dart';
 import './frontend_signup_individual.dart';
 // import 'main.dart';
 
 void main() {
+  initC();
   runApp(const Launch());
 }
 

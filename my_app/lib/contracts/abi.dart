@@ -1,5 +1,28 @@
 const String ngoAbi = '''[
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_motto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "_addCampaign",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -27,6 +50,21 @@ const String ngoAbi = '''[
 					{
 						"internalType": "string",
 						"name": "ngoName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "contact",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Address",
 						"type": "string"
 					}
 				],
@@ -57,6 +95,24 @@ const String ngoAbi = '''[
 		],
 		"name": "_confirmNgo_event",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			}
+		],
+		"name": "_login",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -100,189 +156,6 @@ const String ngoAbi = '''[
 		],
 		"name": "_login_event",
 		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "email",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "password",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "contact",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "Address",
-						"type": "string"
-					}
-				],
-				"indexed": false,
-				"internalType": "struct Ngo.ngo",
-				"name": "",
-				"type": "tuple"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			}
-		],
-		"name": "_signup_event",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "name_campaign",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "motto",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amountTotal",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amountCollected",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "ngoName",
-						"type": "string"
-					}
-				],
-				"indexed": false,
-				"internalType": "struct Ngo.campaign[]",
-				"name": "campaigns",
-				"type": "tuple[]"
-			}
-		],
-		"name": "getAllCampaignsAndNgos_event",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"name": "logout_event",
-		"type": "event"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "fallback"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "Campaigns",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name_campaign",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "motto",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amountTotal",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amountCollected",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "ngoName",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_motto",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "_addCampaign",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			}
-		],
-		"name": "_login",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -351,6 +224,52 @@ const String ngoAbi = '''[
 		"type": "function"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "password",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "contact",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Address",
+						"type": "string"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct Ngo.ngo",
+				"name": "",
+				"type": "tuple"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "_signup_event",
+		"type": "event"
+	},
+	{
 		"inputs": [],
 		"name": "_withdrawCampaign",
 		"outputs": [],
@@ -359,10 +278,65 @@ const String ngoAbi = '''[
 	},
 	{
 		"inputs": [],
-		"name": "getAllCampaignsAndNgos",
+		"name": "getAllCampaigns",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name_campaign",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "motto",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountTotal",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountCollected",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "ngoName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "contact",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Address",
+						"type": "string"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct Ngo.campaign[]",
+				"name": "campaigns",
+				"type": "tuple[]"
+			}
+		],
+		"name": "getAllCampaigns_event",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -376,6 +350,19 @@ const String ngoAbi = '''[
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"name": "logout_event",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -397,11 +384,87 @@ const String ngoAbi = '''[
 	},
 	{
 		"stateMutability": "payable",
+		"type": "fallback"
+	},
+	{
+		"stateMutability": "payable",
 		"type": "receive"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "Campaigns",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name_campaign",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "motto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountTotal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountCollected",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "ngoName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "contact",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Address",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]''';
 
 const String individualAbi = '''[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			}
+		],
+		"name": "_login",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"anonymous": false,
 		"inputs": [
@@ -444,6 +507,39 @@ const String individualAbi = '''[
 		],
 		"name": "_login_event",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_contact",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_Address",
+				"type": "string"
+			}
+		],
+		"name": "_signup",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -523,7 +619,10 @@ const String individualAbi = '''[
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
+	}
+]''';
+
+const String corporateAbi = '''[
 	{
 		"inputs": [
 			{
@@ -542,42 +641,6 @@ const String individualAbi = '''[
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_contact",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_Address",
-				"type": "string"
-			}
-		],
-		"name": "_signup",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]''';
-
-const String corporateAbi = '''[
 	{
 		"anonymous": false,
 		"inputs": [
@@ -620,6 +683,39 @@ const String corporateAbi = '''[
 		],
 		"name": "_login_event",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_contact",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_Address",
+				"type": "string"
+			}
+		],
+		"name": "_signup",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -704,57 +800,6 @@ const String corporateAbi = '''[
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_userName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			}
-		],
-		"name": "_login",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_contact",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_Address",
-				"type": "string"
-			}
-		],
-		"name": "_signup",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]''';

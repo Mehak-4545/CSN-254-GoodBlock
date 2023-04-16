@@ -54,7 +54,7 @@ class _AuthPageState extends State<AuthPage_ngo> {
                       //     height: 100, width: 100),
                       SizedBox(
                         // height: MediaQuery.of(context).size.height * 0.1,
-                        height: 175,
+                        height: 75,
                       ),
                       Text(
                         'Welcome!',
@@ -220,7 +220,6 @@ class _AuthPageState extends State<AuthPage_ngo> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
-                          keyboardType: TextInputType.numberWithOptions(),
                           style: TextStyle(color: Color(0xff32637F)),
                           decoration: InputDecoration(
                             filled: false,

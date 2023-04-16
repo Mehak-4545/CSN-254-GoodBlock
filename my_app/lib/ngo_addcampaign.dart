@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/frontend_listing.dart';
 import 'package:my_app/home_ngo.dart';
+import 'package:my_app/web3/interactor.dart';
 // import 'package:my_app/main.dart';
 import './frontend_signup_individual.dart';
 import 'home.dart';
@@ -189,7 +190,9 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          await callContractFunction("ngo", "_addCampaign", [input_campaignname, input_campaignmotto, BigInt.from(value)], "_addCampaign_event")
+                        },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           padding: EdgeInsets.all(
@@ -209,7 +212,7 @@ class _AuthPage_addcampaignState extends State<AuthPage_addcampaign> {
                               ]),
                           child: Center(
                             child: Text(
-                              'Donate',
+                              'Create',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
