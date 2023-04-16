@@ -11,6 +11,7 @@
 - run flutter commands : `flutter run` ( it runs the main.dart file )
 #### App flow:
 <img src="App_flow.png">
+
 #### Branches:
 - frontend: this branch has all the working frontend with database queries/ backend hardcoded.
 - contracts: this branch has the set of contracts and the entire backend.
