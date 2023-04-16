@@ -1,6 +1,6 @@
 # CSN-254-GoodBlock
 ## Building a new world, one block at a time!
-### This app aims to let the donors do hassle free transactions with the NGOs, knowing which campaign to donate and is in need of donation.
+### This app aims to let the donors do hassle free transactions with the NGOs, knowing which campaign to donate and is in need of donation. The idea for GoodBlock originates from the noble vision of making the world a better place for one and all by providing a platform where individuals and corporations can donate money towards social causes.
 #### Tech stack:
 - Frontend has been written in Flutter framework (using dart) and backend in Solidity.
 - Data has been stored in Solidity, using blockchain technology.
