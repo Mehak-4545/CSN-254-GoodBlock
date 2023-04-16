@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/profile_page_corporation.dart';
 import 'package:my_app/profile_page_ngo.dart';
+import 'package:my_app/web3/interactor.dart';
 import './frontend_signup_individual.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './home.dart';
@@ -14,22 +15,33 @@ void tmpFunction3() {
 }
 
 class AuthPage_list extends StatefulWidget {
-  final String role;
-  final String name;
+  final String role, name, email, contact, address;
 
-  const AuthPage_list({Key? key, required this.role, required this.name})
+  const AuthPage_list(
+      {Key? key,
+      required this.role,
+      required this.name,
+      required this.address,
+      required this.contact,
+      required this.email})
       : super(key: key);
   @override
   _AuthPage_listState createState() => _AuthPage_listState();
 }
 
 class _AuthPage_listState extends State<AuthPage_list> {
-  final List<String> name_of_ngo = <String>[];
-  final List<String> name_campaign = <String>[];
-  final List<String> motto = <String>[];
+  var name_of_ngo = <String>[];
+  var name_campaign = <String>[];
+  var motto = <String>[];
+  var contact = <String>[];
+  var email = <String>[];
   var ngo = <String>[];
   var camp = <String>[];
   var mo = <String>[];
+  var cont = <String>[];
+  var emai = <String>[];
+  var contact_all = <String>[];
+  var email_all = <String>[];
   var ngo_all = <String>[];
   var camp_all = <String>[];
   var mo_all = <String>[];
@@ -40,23 +52,17 @@ class _AuthPage_listState extends State<AuthPage_list> {
         "ngo", "getAllCampaigns", [], "getAllCampaigns_event");
     List<String> campaigns = result[0];
     for (var campaign in campaigns) {
-      ngo_all.add(campaign[0][4]);
-      ngo.add(campaign[0][4]);
+      name_of_ngo.add(campaign[0][4]);
       contact.add(campaign[0][6]);
-      address.add(campaign[0][7]);
       name_campaign.add(campaign[0][0]);
-      camp.add(campaign[0][0]);
       motto.add(campaign[0][1]);
-      mo.add(campaign[0][1]);
+      email.add(campaign[0][5]);
     }
     super.initState();
   }
 
   void filterSearchResults(String cam_name) {
     setState(() {
-      // ngo = name_of_ngo
-      //     .where((item) => item.toLowerCase().contains(name.toLowerCase()))
-      //     .toList();
       camp = name_campaign
           .where((item) => item.toLowerCase().contains(cam_name.toLowerCase()))
           .toList();
@@ -66,39 +72,20 @@ class _AuthPage_listState extends State<AuthPage_list> {
         if (name_campaign[i].contains(cam_name)) {
           ind = i;
           ngo_all.add(name_of_ngo[ind]);
-          // .toList();
           mo_all.add(motto[ind]);
+          contact_all.add(contact[ind]);
+          email_all.add(email[ind]);
         }
       }
       ngo = ngo_all.toList();
       mo = mo_all.toList();
+      emai = email_all.toList();
+      cont = contact_all.toList();
       ngo_all.clear();
       mo_all.clear();
-      // mo = motto
-      //     .where((item) => item.toLowerCase().contains(goal.toLowerCase()))
-      //     .toList();
+      email_all.clear();
+      contact_all.clear();
     });
-    // setState(() {
-    //   // ngo.clear();
-    //   var ind = -1;
-    //   for (var i = 0; i < ngo.length; i++) {
-    //     if (ngo[i] == name) ind = i;
-    //   }
-    //   if (ind == -1) {
-    //     camp.clear();
-    //     ngo.clear();
-    //     mo.clear();
-    //   } else {
-    //     var cam_name = camp[ind];
-    //     var goal = mo[ind];
-    //     ngo.clear();
-    //     ngo.add(name);
-    //     camp.clear();
-    //     camp.add(cam_name);
-    //     mo.clear();
-    //     mo.add(goal);
-    //   }
-    // });
   }
 
   @override
@@ -147,6 +134,9 @@ class _AuthPage_listState extends State<AuthPage_list> {
                 builder: (context) => HomeOtherAppPage(
                       role: widget.role,
                       name: widget.name,
+                      address: widget.address,
+                      contact: widget.contact,
+                      email: widget.email,
                     )));
           }
           if (index == 1) {
@@ -154,17 +144,27 @@ class _AuthPage_listState extends State<AuthPage_list> {
                 builder: (context) => HomeOtherAppPage(
                       role: widget.role,
                       name: widget.name,
+                      address: widget.address,
+                      contact: widget.contact,
+                      email: widget.email,
                     )));
           }
           if (index == 2 && widget.role == "Individual") {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    ProfileIndividualPage(name: widget.name)));
+                builder: (context) => ProfileIndividualPage(
+                      name: widget.name,
+                      address: widget.address,
+                      contact: widget.contact,
+                      email: widget.email,
+                    )));
           }
           if (index == 2 && widget.role == "Corporation") {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => ProfileCorporationPage(
                       name: widget.name,
+                      address: widget.address,
+                      contact: widget.contact,
+                      email: widget.email,
                     )));
           }
           // if (widget.role == "Individual") {
@@ -345,9 +345,9 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                                           Navigator.of(context).push(
                                                               MaterialPageRoute(
                                                                   builder: (context) =>
-                                                                      ProfileNGOPage(
+                                                                      ProfileNGOPage(address: "HIDDEN",
                                                                           name:
-                                                                              '${ngo[index]}')));
+                                                                              '${ngo[index]}', contact: cont[index], email: emai[index])));
                                                         }
                                                       },
                                                       child: TextButton(
@@ -358,7 +358,7 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                                                       (context) =>
                                                                           ProfileNGO(
                                                                             name:
-                                                                                '${ngo[index]}',
+                                                                                '${ngo[index]}', contact: cont[index], email: emai[index], address: "HIDDEN",
                                                                           )));
                                                         },
                                                         child: Text(
@@ -386,7 +386,7 @@ class _AuthPage_listState extends State<AuthPage_list> {
                                                                           name_of_corporation:
                                                                               widget.name,
                                                                           role:
-                                                                              widget.role,
+                                                                              widget.role, self_address: widget.address, self_contact: widget.contact, self_email: widget.email,
                                                                         )));
                                                       },
                                                       child: Container(
