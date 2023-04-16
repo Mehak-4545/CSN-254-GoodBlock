@@ -5,7 +5,7 @@
 - Frontend has been written in Flutter framework (using dart) and backend in Solidity.
 - Data has been stored in Solidity, using blockchain technology.
 #### Steps to use:
-- clone the repo: `git clone https://github.com/Mehak-4545/CSN-254-GoodBlock/`
+- clone the repo: `git clone https://github.com/Mehak-4545/CSN-254-GoodBlock/` or unzip the file
 - check for flutter dependencies: `flutter pub get`
 - choose the right directory: `cd my-app`
 - run flutter commands : `flutter run` ( it runs the main.dart file )
