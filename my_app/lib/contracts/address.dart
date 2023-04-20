@@ -1,4 +1,4 @@
-const String ngo = "0xd01EC5c84602fc897980A9aAA6B8623a4391DC3F",
-    corporation = "0xaE8B36D9c8Cb5684aF6e064e7209626E9C4c0b66",
-    individual = "0x0Fc2a75d1CCE1b720e0F01288643bb2CFE0E61Cc",
-    test = "0x3bF7D0cfa43b27c96c397cf9f8AB97578355c9a4";
+const String ngo = "",
+    corporation = "",
+    individual = "";
+   
