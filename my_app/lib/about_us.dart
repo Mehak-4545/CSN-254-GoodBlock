@@ -90,7 +90,7 @@ class _AuthPage_aboutusState extends State<AuthPage_aboutus> {
                         
                       ),
                       Text(
-                        'GoodBlock is an application that connects various NGOs accross the world to  Corporations and Individuals who wish to donate for a cause,  ',
+                        'GoodBlock is an application that connects various NGOs accross the world to Corporations and Individuals who wish to donate for a noble cause. We wish to encourage Corporate Social Responsibility while also allowing NGOs to promote their drive and showcase their impact. We belive that "We make a living by what we get. We make a life by what we give" ',
                         style:
                             TextStyle(fontSize: 20, color: Color(0xff0d557e)),
                         
