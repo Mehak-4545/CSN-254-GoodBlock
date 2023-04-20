@@ -5,10 +5,13 @@
 - Frontend has been written in Flutter framework (using dart) and backend in Solidity.
 - Data has been stored in Solidity, using blockchain technology.
 #### Steps to use:
-- clone the repo: `git clone https://github.com/Mehak-4545/CSN-254-GoodBlock/` or unzip the file
-- check for flutter dependencies: `flutter pub get`
-- choose the right directory: `cd my-app`
-- run flutter commands : `flutter run` ( it runs the main.dart file )
+- Clone the repo: `git clone https://github.com/Mehak-4545/CSN-254-GoodBlock/` or unzip the file
+- Use remix ide to deploy main.sol
+- Copy contract addresses to address.dart
+- Provide your private key in interactor.dart
+- Check for flutter dependencies: `flutter pub get`
+- Choose the right directory: `cd my-app`
+- Run flutter commands : `flutter run` ( it runs the main.dart file )
 #### App flow:
 <img src="App_flow.png">
 
