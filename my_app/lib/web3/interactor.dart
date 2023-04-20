@@ -61,7 +61,7 @@ Future<dynamic> callContractFunction(String contractName, String funcName,
 
   // Sign and send the transaction
   final credentials = EthPrivateKey.fromHex(
-      '617bded8c194ba0e803cdb16959c2d6201174ea27f0a2957d523bf141a34b6e3');
+      '/*Insert your private key here*/');
   final transactionHash = await client.sendTransaction(credentials, transaction,
       chainId: 1313161555);
   print(transactionHash);
