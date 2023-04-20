@@ -71,7 +71,7 @@ class _AuthPage_historyState extends State<AuthPage_history> {
                         height: 200,
                       ),
                       Text(
-                        'The vision of GoodBlock',
+                        'The history of GoodBlock',
                         style:
                             TextStyle(fontSize: 35, color: Color(0xff0d557e)),
                         
@@ -84,7 +84,7 @@ class _AuthPage_historyState extends State<AuthPage_history> {
 
 
                       Text(
-                        'GoodBlock hehe',
+                        'GoodBlock has a pristine record of delivering quality services to donors and recepients alike. We have carried out numerous secure transactions for several users and are proud of the vision we carry. Come be a part of the GoodBlock family, Donate today!',
                         style:
                             TextStyle(fontSize: 20, color: Color(0xff0d557e)),
                         
